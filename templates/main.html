@@ -1,0 +1,363 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block title %}Саресеп - маалымат порталы{% endblock %}
+{% block description %}Информационное агентство. Оперативные новости Кыргызстана, статьи, аналитические
+    материалы.{% endblock %}
+{% block keywords %}Новости Кыргызстана{% endblock %}
+{% block title_og %}Саресеп - маалымат порталы{% endblock %}
+{% block description_og %}Информационное агентство. Оперативные новости Кыргызстана, статьи, аналитические
+    материалы.{% endblock %}
+{% block image_og %}{% static 'css/sample.png' %}{% endblock %}
+{% block url_og %}{% endblock %}
+{% block title_twitter %}Саресеп - маалымат порталы{% endblock %}
+{% block description_twitter %}Информационное агентство. Оперативные новости Кыргызстана, статьи, аналитические
+    материалы.{% endblock %}
+{% block image_twitter %}{% static 'css/sample.png' %}{% endblock %}
+{% block category_string %} &mdash; {{ category_name }}{% endblock %}
+{% block category_string2 %} &mdash; {{ category_name }}{% endblock %}
+{% block content %}
+    <div class="main " xmlns="http://www.w3.org/1999/html">
+        <div class="container">
+            <div class="headlinesWrapper row">
+                <div class="headlines">
+                    <a href="/article/{{ a1.id }}/" class="col-sm-6 col-xs-12 headline " id="headline1">
+                        <div class="featured-image" style="background-image: url({{ a1.image.url }})"></div>
+                        <div class="data">
+                            <h3>{{ a1.title }}</h3>
+                            <h5 class="metad"><span
+                                    style="padding: 3px 7px; color: white; background-color: {{ a1.category.colour }}; line-height: 1.3;">{{ a1.category.name }}</span>
+                            </h5>
+                        </div>
+                    </a>
+                    <a href="/article/{{ a2.id }}/" class="col-md-6 col-sm-6 col-xs-12 headline "
+                       id="headline2">
+                        <div class="featured-image" style="background-image: url({{ a2.image.url }})"></div>
+                        <div class="data">
+                            <h3>{{ a2.title }}</h3>
+                            <h5 class="metad"><span
+                                    style="padding: 3px 7px; color: white; background-color: {{ a2.category.colour }}; line-height: 1.3;">{{ a2.category.name }}</span>
+                            </h5>
+                        </div>
+                    </a>
+                    <a href="/article/{{ a3.id }}/" class="col-md-3 col-sm-6 col-xs-12 headline "
+                       id="headline3">
+                        <div class="featured-image" style="background-image: url({{ a3.image.url }})"></div>
+                        <div class="data">
+                            <h3>{{ a3.title }}</h3>
+                            <h5 class="metad"><span
+                                    style="padding: 3px 7px; color: white; background-color: {{ a3.category.colour }}; line-height: 1.3;">{{ a3.category.name }}</span>
+                            </h5>
+                        </div>
+                    </a>
+                    <a href="/article/{{ a4.id }}/" class="col-md-3 col-sm-6 col-xs-12 headline "
+                       id="headline4">
+                        <div class="featured-image"
+                             style="background-image: url({{ a4.image.url }})"></div>
+                        <div class="data">
+                            <h3>{{ a4.title }}</h3>
+                            <h5 class="metad"><span
+                                    style="padding: 3px 7px; color: white; background-color: {{ a4.category.colour }}; line-height: 1.3;">{{ a4.category.name }}</span>
+                            </h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="currency row">
+                        <div class="ttl">
+                            Валюта курсу
+                        </div>
+                        <div>
+                            <div class="col-md-3 col-sm-6 col-xs-12" style="border-right: gray solid 1px; padding-top: 10px;">
+                                <p class="col-xs-6 text-left"><img src="{% static 'css/1-02.svg' %}" height="22px" style="margin-top: -5px;" alt=""></p>
+
+                                <p class="col-xs-6 text-right" id="dollarrate2"></p>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12" style="border-right: gray solid 1px; padding-top: 10px;">
+                                <p class="col-xs-6 text-left"><img src="{% static 'css/1-03.svg' %}" height="22px" style="margin-top: -5px;" alt=""></p>
+
+                                <p class="col-xs-6 text-right" id="eurorate2"></p>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12" style="border-right: gray solid 1px; padding-top: 10px;">
+                                <p class="col-xs-6 text-left"><img src="{% static 'css/1-04.svg' %}" height="22px" style="margin-top: -5px;" alt=""></p>
+
+                                <p class="col-xs-6 text-right" id="rubrate2"></p>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12" style="padding-top: 10px;">
+                                <p class="col-xs-6 text-left"><img src="{% static 'css/1-01.svg' %}" height="22px" style="margin-top: -5px;" alt=""></p>
+
+                                <p class="col-xs-6 text-right" id="tengerate2"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="latestWrapper row">
+                        <div>
+                            Акыркы материалдар
+                        </div>
+                        <ul class="latestNews">
+                            {% for t in all_24|slice:"10" %}
+                                <li class="latest-items col-sm-6 col-xs-12">
+                                    {% if t.image %}
+                                        <a href="/article/{{ t.id }}/">
+                                            <div class="cat-featured-image"
+                                                 style="
+                                                                 background-image: url({{ t.image.url }}"></div>
+                                        </a>
+                                        <div>
+                                            <h6 style="margin: 5px 0; color: #175f94;">{{ t.get_date }}</h6>
+
+                                            <p class="data">
+                                                <a href="/article/{{ t.id }}/">{{ t.title }}</a>
+                                            </p>
+                                        </div>
+                                    {% else %}
+                                        <div>
+                                            <h6 style="margin: 5px 0; color: #175f94;">{{ t.get_date }}</h6>
+
+                                            <p class="data">
+                                                <a href="/news/{{ t.id }}/">{{ t.title }}</a>
+                                            </p>
+                                        </div>
+                                    {% endif %}
+
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+
+            {% for category in categories %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <hr style="border-color: {{ category.colour }}; margin-bottom: 0;">
+                        <h3>
+                            <a style="color: {{ category.colour }};"
+                               href="/category/{{ category.id }}/1">{{ category.name }}
+                                <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </h3>
+                        <ul class="latestNews hidden-lg hidden-md hidden-sm">
+                            {% for article in category.get_articles %}
+                                <li class="col-xs-12">
+                                    <a href="/article/{{ article.id }}/">
+                                        <div class="cat-featured-image"
+                                             style="
+                                                                 background-image: url({{ article.image.url }}"></div>
+                                    </a>
+
+                                    <div>
+                                        <h6 style="margin: 5px 0; color: #175f94;">{{ article.get_date }}</h6>
+
+                                        <p class="data">
+                                            <a href="/article/{{ article.id }}/">{{ article.title }}</a>
+                                        </p>
+                                    </div>
+
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="categoryLatestArticle hidden-xs">
+                            {% for article in category.get_articles %}
+                                <li class="col-lg-3 col-md-3 col-sm-6  articles">
+                                    <a href="/article/{{ article.id }} ">
+                                        <div class="cat-featured-image"
+                                             style="background-image: url({{ article.image.url }})">
+                                            <div class="type"
+                                                 style="background-color: {{ article.category.colour }}">{{ article.tag }}</div>
+                                            <div class="author"
+                                                 style="background-color: {{ article.category.colour }}">
+                                                <img
+                                                        class="img-circle author-image"
+                                                        src="{{ article.author.avatar.url }}">
+                                                {{ article.author }}
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div>
+                                        <p class="data">
+                                            <a href="/article/{{ article.id }}/">{{ article.title }}</a>
+                                        </p>
+                                        <h6 class="hidden-xs"
+                                            style="padding: 0 10px 10px 10px; margin: 0; font-style: normal; line-height: 1.4">
+                                            {{ article.body|striptags|slice:":90" }}...
+                                        </h6>
+
+                                        <div class="meta row">
+                                            <h6 class="date col-xs-9" style="padding: 0">
+                                                {{ article.get_date }}
+                                            </h6>
+                                            <h6 class="comments col-xs-3 text-right" style="padding: 0">
+                                                <i class="fa fa-comment"></i>
+                                                {{ article.rate }}
+                                            </h6>
+
+                                        </div>
+                                    </div>
+
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-12 paddingforxs">
+                        <ul class="categoryLatestNews js-masonry">
+                            {% for new in category.get_news %}
+                                <li class="col-md-3 col-sm-12 col-xs-12 news">
+                                    <div class="row">
+                                        <h6>
+                                            {{ new.get_date }}
+                                        </h6>
+
+                                        <p class="data"><a
+                                                href="/news/{{ new.id }}">{{ new.title }}</a>
+                                        </p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+
+
+            {% endfor %}
+            {#        KyKyJY#}
+            <div class="row">
+                <div class="col-xs-12">
+                    <hr style="border-color: {{ aikol.colour }}; margin-bottom: 0;">
+                    <h3>
+                        <a style="color: {{ aikol.colour }};"
+                           href="/category/{{ aikol.id }}/1">{{ aikol.name }}
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                    </h3>
+                    <ul class="latestNews hidden-lg hidden-md hidden-sm">
+                        {% for article in aikol.get_articles %}
+                            <li class="col-xs-12">
+                                <a href="/article/{{ article.id }}/">
+                                    <div class="cat-featured-image"
+                                         style="
+                                                                 background-image: url({{ article.image.url }}"></div>
+                                </a>
+
+                                <div>
+                                    <h6 style="margin: 5px 0; color: #175f94;">{{ article.get_date }}</h6>
+
+                                    <p class="data">
+                                        <a href="/article/{{ article.id }}/">{{ article.title }}</a>
+                                    </p>
+                                </div>
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <ul class="categoryLatestArticle hidden-xs">
+                        {% for article in aikol.get_articles %}
+                            <li class="col-lg-3 col-md-3 col-sm-6 col-xs-12 articles">
+                                <a href="/article/{{ article.id }} ">
+                                    <div class="cat-featured-image"
+                                         style="background-image: url({{ article.image.url }})">
+                                        <div class="type"
+                                             style="background-color: {{ article.category.colour }}">{{ article.tag }}</div>
+                                        <div class="author"
+                                             style="background-color: {{ article.category.colour }}">
+                                            <img
+                                                    class="img-circle author-image"
+                                                    src="{{ article.author.avatar.url }}">
+                                            {{ article.author }}
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <div>
+                                    <p class="data">
+                                        <a href="/article/{{ article.id }}">{{ article.title }}</a>
+                                    </p>
+                                    <h6 class="hidden-xs"
+                                        style="padding: 0 10px 10px 10px; margin: 0; font-style: normal; line-height: 1.4">
+                                        {{ article.body|striptags|slice:":90" }}...
+                                    </h6>
+
+                                    <div class="meta row">
+                                        <h6 class="date col-xs-9" style="padding: 0">
+                                            {{ article.get_date }}
+                                        </h6>
+                                        <h6 class="comments col-xs-3 text-right" style="padding: 0">
+                                            <i class="fa fa-comment"></i>
+                                            {{ article.rate }}
+                                        </h6>
+
+                                    </div>
+                                </div>
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-xs-12 paddingforxs">
+                    <ul class="categoryLatestNews js-masonry">
+                        {% for new in aikol.get_news %}
+                            <li class="col-md-3 col-sm-12 col-xs-12 news">
+                                <div class="row">
+                                    <h6>
+                                        {{ new.get_date }}
+                                    </h6>
+
+                                    <p class="data"><a
+                                            href="/news/{{ new.id }}">{{ new.title }}</a>
+                                    </p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $('.categoryLatestArticle').masonry({
+            itemSelector: '.articles',
+        });
+        $('.categoryLatestNews').masonry({
+            itemSelector: '.news',
+        });
+        $('.latestNews').masonry({
+            itemSelector: '.latest-items',
+        });
+
+        var dollar = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var euro = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22EURKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var rub = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22RUBKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var tenge = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22KZTKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+
+        $.getJSON(dollar, function (s) {
+            $('#dollarrate').append(s.query.results.rate.Rate)
+            $('#dollarrate2').append(s.query.results.rate.Rate)
+        })
+        $.getJSON(euro, function (s) {
+            $('#eurorate').append(s.query.results.rate.Rate)
+            $('#eurorate2').append(s.query.results.rate.Rate)
+
+
+        })
+        $.getJSON(rub, function (s) {
+            $('#rubrate').append(s.query.results.rate.Rate)
+            $('#rubrate2').append(s.query.results.rate.Rate)
+        })
+        $.getJSON(tenge, function (s) {
+            $('#tengerate').append(s.query.results.rate.Rate)
+            $('#tengerate2').append(s.query.results.rate.Rate)
+        })
+    </script>
+{% endblock %}

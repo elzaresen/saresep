@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block title %}{{ category_name }} - Саресеп{% endblock %}
+{% block category_string %} &mdash; {{ category_name }}{% endblock %}
+{% block category_string2 %} &mdash; {{ category_name }}{% endblock %}
+{% block content %}
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <br>
+                <ul class="latestNews">
+                    {% for t in all %}
+                        <li class="col-md-4 col-sm-6 col-xs-12">
+                            {% if t.image %}
+                                <a href="/article/{{ t.id }}/">
+                                    <div class="cat-featured-image"
+                                         style="
+                                                                 background-image: url({{ t.image.url }}"></div>
+                                </a>
+                                <div class="pad140">
+                                    <h6 style="margin: 5px 0; color: #175f94;">{{ t.get_date }}</h6>
+
+                                    <p class="data">
+                                        <a href="/article/{{ t.id }}/">{{ t.title }}</a>
+                                    </p>
+                                </div>
+                            {% else %}
+                                <div style="padding-left: 10px;">
+                                    <h6 style="margin: 5px 0; color: #175f94;">{{ t.get_date }}</h6>
+
+                                    <p class="data">
+                                        <a href="/news/{{ t.id }}/">{{ t.title }}</a>
+                                    </p>
+                                </div>
+                            {% endif %}
+
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="text-center col-md-12">
+                    {% if previous == 0 %}
+                        <a class="hidden" href="/category/{{ category_name.id }}/{{ previous }}/">Prev</a>
+                    {% else %}
+                        <a href="/category/{{ category_name.id }}/{{ previous }}/">Prev</a>
+                    {% endif %}
+                    {% if a == next %}
+                        <a class="hidden" href="/category/{{ category_name.id }}/{{ next }}/">Next</a>
+                    {% else %}
+                        <a href="/category/{{ category_name.id }}/{{ next }}/">Next</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $('.latestNews').masonry({
+            itemSelector: 'li',
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,198 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block title %}{{ article.title }} - Саресеп{% endblock %}
+{% block description %}{{ article.body|striptags|slice:":160" }}{% endblock %}
+{% block keywords %}{{ article.keys }}{% endblock %}
+{% block author %}{{ article.author }}{% endblock %}
+{% block title_og %}{{ article.title }}{% endblock %}
+{% block description_og %}{{ article.body|striptags|slice:":160" }}{% endblock %}
+{% block image_og %}{{ article.image.url }}{% endblock %}
+{% block url_og %}/article/{{ article.id }}{% endblock %}
+{% block title_twitter %}{{ article.title }}{% endblock %}
+{% block description_twitter %}{{ article.body|striptags|slice:":160" }}{% endblock %}
+{% block image_twitter %}{{ article.image.url }}{% endblock %}
+{% block author_twitter %}{{ article.author }}{% endblock %}
+{% block content %}
+    <div class="main container-fluid " style="padding: 0;">
+        <div class="articleHeader"
+             style="background-image: url(
+                     {% if article.image.url != null %}{{ article.image.url }}{% else %}none{% endif %});">
+
+            <div class="articleBlackout">
+                <div class="articleAuthor" style="margin-bottom: 10px;">
+                <span
+                                    style="padding: 3px 7px; color: white; background-color: {{ article.category.colour }}; line-height: 1.3;">{{ article.category.name }}</span>
+            </div>
+                <h1 class="articleTitle">
+                    {{ article.title }}
+                </h1>
+
+                <div class="articleAuthor">
+                    <img class="img-circle"
+                         style="" src="{{ article.author.avatar.url }}" alt=""/>
+                    <span>{{ article.author }} -
+                        {{ article.get_date }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="articleText container">
+            <div class="col-md-8 col-md-offset-2">
+                {{ article.body|safe }}
+            </div>
+        </div>
+        {% if article.audio %}
+            <div class="container col-md-8 col-md-offset-4">
+                <audio controls>
+                    <source src="{{ article.audio.url }}" type="audio/ogg">
+                    <source src="{{ article.audio.url }}" type="audio/mp3">
+                </audio>
+            </div>
+        {% endif %}
+        <div class="container">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="authorSection">
+                    <img class="img-responsive img-circle"
+                         style="height: 90px; float: left;  width: 90px; display: inline-block"
+                         src="{{ article.author.avatar.url }}" alt="">
+
+                    <div style="margin-left: 100px;">
+                        <h4>
+                            <b>
+                                {{ article.author }}
+                            </b>
+                        </h4>
+
+                        <p>{{ article.author.description }}</p>
+
+                        <div class="socialProfiles">
+                            {% if article.author.facebook %}
+                                <a href="{{ article.author.facebook }}"><i
+                                        class="fa fa-facebook-official fa-2x"></i></a>
+                            {% endif %}
+                            {% if article.author.twitter %}
+                                <a href="{{ article.author.twitter }}"><i class="fa fa-twitter-square fa-2x"></i></a>
+                            {% endif %}
+                            {% if article.author.googleplus %}
+                                <a href="{{ article.author.googleplus }}"><i class="fa fa-google-plus-square fa-2x"></i></a>
+                            {% endif %}
+                            {% if article.author.odnoklassniki %}
+                                <a href="{{ article.author.odnoklassniki }}"><i
+                                        class="fa fa-odnoklassniki-square fa-2x"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="shareSection"></div>
+        <div class="articleComments" id="comments">
+            <div class="col-md-6 col-md-offset-3">
+                <div style="border-bottom: 1px black solid; margin-bottom: 15px;;"><h3>Комментарийлер</h3></div>
+                {% if comments %}
+                    {% for i in comments %}
+                        <ul class="commentsList">
+                            <li>
+                                <h5 style="display: inline"><b>
+                                    <i class="fa fa-user"></i>
+                                    <span class="authorac">{{ i.author }}</span>
+                                </b>
+                                </h5>
+                                <h6 style="display: inline; margin-left: 15px">
+                                    <i style="color: rgba(0, 0, 0, 0.6);" class="fa fa-calendar-o"></i>
+                                    <span style="color: rgba(0, 0, 0, 0.6);">{{ i.get_date }}</span>
+                                </h6>
+
+                                <div class="commenttext">{{ i.text }}</div>
+
+                            </li>
+                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <ul class="commentsList">
+                        <li>No comments</li>
+                    </ul>
+                {% endif %}
+
+                <form action="/addcomment_article/{{ article.id }}/" method="post">
+                    <div class="the_form">
+                        <p>
+                            {% csrf_token %}
+                            {{ form.label }}
+                            {{ form }}
+                        </p>
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-material" value="Добавить комментарий">
+                </form>
+            </div>
+        </div>
+        <div class="col-xs-12" style="margin-bottom: 50px;">
+            <div class="container">
+                <h2 class="text-center" style="margin-bottom: 25px;">Башка басмалар</h2>
+                <ul class="latestNews hidden-lg hidden-md hidden-sm">
+                    {% for article in article_by_category %}
+                        <li class="col-xs-12">
+                            <a href="/article/{{ article.id }}/">
+                                <div class="cat-featured-image"
+                                     style="
+                                                                 background-image: url({{ article.image.url }}"></div>
+                            </a>
+
+                            <div>
+                                <h6 style="margin: 5px 0; color: #175f94;">{{ article.get_date }}</h6>
+
+                                <p class="data">
+                                    <a href="/article/{{ article.id }}/">{{ article.title }}</a>
+                                </p>
+                            </div>
+
+                        </li>
+                    {% endfor %}
+                </ul>
+                <ul class="categoryLatestNews">
+                    {% for t in article_by_category %}
+                        <li class="col-md-3 col-sm-6 articles hidden-xs" style="list-style: none;">
+                            <div>
+                                <a href="/article/{{ t.id }}">
+                                    <div class="cat-featured-image"
+                                         style="background-image: url({{ t.image.url }})"></div>
+                                </a>
+
+                                <p class="data">
+                                    <a href="/article/{{ t.id }}">{{ t.title }}</a>
+                                </p>
+
+                                <h6 style="padding: 0 10px 10px 10px; margin: 0; font-style: normal; line-height: 1.4">
+                                    {{ article.body|striptags|slice:":90" }}...
+                                </h6>
+
+                                <div class="meta row">
+                                    <h5 class="type col-xs-6"
+                                        style="color: {{ article.category.colour }}">{{ t.tag }}</h5>
+                                    <h5 class="comments col-xs-6 text-right"><span><i
+                                            class="fa fa-comment"></i> </span><span>{{ t.rate }}</span>
+                                    </h5>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $('.categoryLatestArticle').masonry({
+            itemSelector: '.articles',
+        });
+
+        $(document).ready(function () {
+            // Target your .container, .wrapper, .post, etc.
+            $(".articleText div").fitVids();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="department" content="legal"/>
+    <meta name="audience" content="all"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="author" content="{% block author %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <meta property="og:url" content="{% block url_og %}{% endblock %}"/>
+    <meta property="og:site_name" content="Саресеп"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="{% block title_og %}{% endblock %}"/>
+    <meta property="og:description" content="{% block description_og %}{% endblock %}"/>
+    <meta property="og:image" content="http://127.0.0.1{% block image_og %}{% endblock %}"/>
+    <meta property="fb:app_id" content="231507357184200"/>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@saresep1">
+    <meta name="twitter:creator" content="{% block author_twitter %}{% endblock %}">
+    <meta name="twitter:title" content="{% block title_twitter %}{% endblock %}">
+    <meta name="twitter:description" content="{% block description_twitter %}{% endblock %}">
+    <meta name="twitter:image" content="http://127.0.0.1{% block image_twitter %}{% endblock %}">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <style>
+        header {
+            background-color: #0a68a3;
+            height: 100vh;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        body {
+            font-family: MuseoCyrillic-300;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 35px;
+        }
+
+        .btn {
+            font-family: "Open Sans";
+            border-radius: 0;
+        }
+
+        img {
+            max-height: 110px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img class="invisible" src="{% static 'css/logo-main.svg' %}" alt="">
+
+    <h1 class="invisible">Soon... With new look</h1>
+    <a href="home/" class="btn btn-default btn-lg invisible">Check out our demo</a>
+</header>
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript">
+    $.fn.extend({
+        animateCss: function (animationName) {
+            var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+            $(this).addClass('animated ' + animationName).one(animationEnd, function () {
+                $(this).removeClass('animated ' + animationName);
+            });
+        }
+    });
+    function one() {
+        $('img').removeClass('invisible')
+        $('img').animateCss('fadeInUp');
+    }
+    function two() {
+        $('h1').removeClass('invisible')
+        $('h1').animateCss('fadeIn');
+    }
+    function three() {
+        $('a').removeClass('invisible')
+        $('a').animateCss('flipInX');
+    }
+    setTimeout(one, 500)
+    setTimeout(two, 1000)
+    setTimeout(three, 1100)
+</script>
+</body>
+</html>
