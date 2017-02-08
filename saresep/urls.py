@@ -22,11 +22,9 @@ from django.conf import settings
 urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^news/(?P<news_id>\d+)/$', 'news.views.kabar'),
     url(r'^article/(?P<article_id>\d+)/$', 'article.views.article'),
-    url(r'^addcomment/(?P<news_id>\d+)/$', 'news.views.addcomment'),
     url(r'^addcomment_article/(?P<article_id>\d+)/$', 'article.views.addcomment'),
-    url(r'^category/(\d+)/(\d+)/$', 'news.views.category'),
+    url(r'^category/(\d+)/$', 'news.views.category'),
     url(r'^redactor/', include('redactor.urls')),
     url(r'^$', 'news.views.main', name="index"),
     url(r'^static/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATIC_ROOT}),

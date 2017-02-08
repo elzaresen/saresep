@@ -1040,8 +1040,7 @@ blockquote {
         line-height: 1.65;
         font-size: 14px;
     }
-
-    .articleText p {
+    .articleText p{
         margin-bottom: 25px;
     }
 }
@@ -1090,8 +1089,7 @@ blockquote {
         line-height: 1.7;
         font-size: 16px;
     }
-
-    .articleText p {
+        .articleText p {
         margin-bottom: 45px;
     }
 }
@@ -1139,8 +1137,7 @@ blockquote {
         line-height: 1.7;
         font-size: 17px;
     }
-
-    .articleText p {
+        .articleText p {
         margin-bottom: 45px;
     }
 }
@@ -1189,7 +1186,6 @@ blockquote {
         line-height: 1.65;
         font-size: 19px;
     }
-
     .articleText p {
         margin-bottom: 45px;
     }
@@ -1246,6 +1242,25 @@ footer .col-md-4 span i {
     }
 }
 
+.cd-top {
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+    position: fixed;
+    bottom: 100px;
+    right: 100px;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    background: rgba(23, 95, 148, 0.8) url(cd-top-arrow.svg) no-repeat center 50%;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+    -moz-transition: opacity .3s 0s, visibility 0s .3s;
+    transition: opacity .3s 0s, visibility 0s .3s;
+}
 .cd-top.cd-is-visible {
   /* the button becomes visible */
   visibility: visible;

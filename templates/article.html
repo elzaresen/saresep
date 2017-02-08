@@ -12,187 +12,188 @@
 {% block description_twitter %}{{ article.body|striptags|slice:":160" }}{% endblock %}
 {% block image_twitter %}{{ article.image.url }}{% endblock %}
 {% block author_twitter %}{{ article.author }}{% endblock %}
-{% block content %}
-    <div class="main container-fluid " style="padding: 0;">
-        <div class="articleHeader"
-             style="background-image: url(
-                     {% if article.image.url != null %}{{ article.image.url }}{% else %}none{% endif %});">
-
-            <div class="articleBlackout">
-                <div class="articleAuthor" style="margin-bottom: 10px;">
-                <span
-                                    style="padding: 3px 7px; color: white; background-color: {{ article.category.colour }}; line-height: 1.3;">{{ article.category.name }}</span>
-            </div>
-                <h1 class="articleTitle">
-                    {{ article.title }}
-                </h1>
-
-                <div class="articleAuthor">
-                    <img class="img-circle"
-                         style="" src="{{ article.author.avatar.url }}" alt=""/>
-                    <span>{{ article.author }} -
-                        {{ article.get_date }}
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="articleText container">
-            <div class="col-md-8 col-md-offset-2">
-                {{ article.body|safe }}
-            </div>
-        </div>
-        {% if article.audio %}
-            <div class="container col-md-8 col-md-offset-4">
-                <audio controls>
-                    <source src="{{ article.audio.url }}" type="audio/ogg">
-                    <source src="{{ article.audio.url }}" type="audio/mp3">
-                </audio>
-            </div>
-        {% endif %}
-        <div class="container">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="authorSection">
-                    <img class="img-responsive img-circle"
-                         style="height: 90px; float: left;  width: 90px; display: inline-block"
-                         src="{{ article.author.avatar.url }}" alt="">
-
-                    <div style="margin-left: 100px;">
-                        <h4>
-                            <b>
-                                {{ article.author }}
-                            </b>
-                        </h4>
-
-                        <p>{{ article.author.description }}</p>
-
-                        <div class="socialProfiles">
-                            {% if article.author.facebook %}
-                                <a href="{{ article.author.facebook }}"><i
-                                        class="fa fa-facebook-official fa-2x"></i></a>
-                            {% endif %}
-                            {% if article.author.twitter %}
-                                <a href="{{ article.author.twitter }}"><i class="fa fa-twitter-square fa-2x"></i></a>
-                            {% endif %}
-                            {% if article.author.googleplus %}
-                                <a href="{{ article.author.googleplus }}"><i class="fa fa-google-plus-square fa-2x"></i></a>
-                            {% endif %}
-                            {% if article.author.odnoklassniki %}
-                                <a href="{{ article.author.odnoklassniki }}"><i
-                                        class="fa fa-odnoklassniki-square fa-2x"></i></a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="shareSection"></div>
-        <div class="articleComments" id="comments">
-            <div class="col-md-6 col-md-offset-3">
-                <div style="border-bottom: 1px black solid; margin-bottom: 15px;;"><h3>Комментарийлер</h3></div>
-                {% if comments %}
-                    {% for i in comments %}
-                        <ul class="commentsList">
-                            <li>
-                                <h5 style="display: inline"><b>
-                                    <i class="fa fa-user"></i>
-                                    <span class="authorac">{{ i.author }}</span>
-                                </b>
-                                </h5>
-                                <h6 style="display: inline; margin-left: 15px">
-                                    <i style="color: rgba(0, 0, 0, 0.6);" class="fa fa-calendar-o"></i>
-                                    <span style="color: rgba(0, 0, 0, 0.6);">{{ i.get_date }}</span>
-                                </h6>
-
-                                <div class="commenttext">{{ i.text }}</div>
-
-                            </li>
-                        </ul>
-                    {% endfor %}
-                {% else %}
-                    <ul class="commentsList">
-                        <li>No comments</li>
-                    </ul>
-                {% endif %}
-
-                <form action="/addcomment_article/{{ article.id }}/" method="post">
-                    <div class="the_form">
-                        <p>
-                            {% csrf_token %}
-                            {{ form.label }}
-                            {{ form }}
-                        </p>
-                    </div>
-                    <input type="submit" class="btn btn-primary btn-material" value="Добавить комментарий">
-                </form>
-            </div>
-        </div>
-        <div class="col-xs-12" style="margin-bottom: 50px;">
-            <div class="container">
-                <h2 class="text-center" style="margin-bottom: 25px;">Башка басмалар</h2>
-                <ul class="latestNews hidden-lg hidden-md hidden-sm">
-                    {% for article in article_by_category %}
-                        <li class="col-xs-12">
-                            <a href="/article/{{ article.id }}/">
-                                <div class="cat-featured-image"
-                                     style="
-                                                                 background-image: url({{ article.image.url }}"></div>
-                            </a>
-
-                            <div>
-                                <h6 style="margin: 5px 0; color: #175f94;">{{ article.get_date }}</h6>
-
-                                <p class="data">
-                                    <a href="/article/{{ article.id }}/">{{ article.title }}</a>
-                                </p>
-                            </div>
-
-                        </li>
-                    {% endfor %}
-                </ul>
-                <ul class="categoryLatestNews">
-                    {% for t in article_by_category %}
-                        <li class="col-md-3 col-sm-6 articles hidden-xs" style="list-style: none;">
-                            <div>
-                                <a href="/article/{{ t.id }}">
-                                    <div class="cat-featured-image"
-                                         style="background-image: url({{ t.image.url }})"></div>
-                                </a>
-
-                                <p class="data">
-                                    <a href="/article/{{ t.id }}">{{ t.title }}</a>
-                                </p>
-
-                                <h6 style="padding: 0 10px 10px 10px; margin: 0; font-style: normal; line-height: 1.4">
-                                    {{ article.body|striptags|slice:":90" }}...
-                                </h6>
-
-                                <div class="meta row">
-                                    <h5 class="type col-xs-6"
-                                        style="color: {{ article.category.colour }}">{{ t.tag }}</h5>
-                                    <h5 class="comments col-xs-6 text-right"><span><i
-                                            class="fa fa-comment"></i> </span><span>{{ t.rate }}</span>
-                                    </h5>
-                                </div>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
-
+{% block static %}
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700i|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/social-share-kit.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/article.css' %}">
 {% endblock %}
+{% block content %}
+    <article>
+			<header style="background-image: url('{{ article.image.url }}')">
+				<div class="container hidden-xs">
+					<span class="category" style="background-color: #03A9F4;">Дүйнө</span>
+					<h1>Түркия Орусия жана Израил менен эмнеге элдешти?</h1>
+					<datetime>26 Сентябрь 2016</datetime>
+				</div>
+			</header>
+		</article>
+		<div class="container card-1">
+			<article>
+				<div class="col-md-8">
+					<div class="content">
+						<div class="visible-xs">
+							<span class="category" style="background-color: {{ article.category.colour }};">
+                                {{ article.category.name }}</span>
+							<h1>{{ article.title }}</h1>
+							<datetime>{{ article.date }}</datetime>
+						</div>
+						<img alt="Erdogan" src="{{ article.image.url }}" class="hidden">
+                        {{ article.body|safe }}
+					</div>
+					<div class="this-article-author">
+						<div class="row">
+							<div class="col-xs-12">
+								<img src="{{ article.author.avatar.url }}" height="75" class="img-circle">
+								<div class="information" style="">
+									<h4 class="name"><b>{{ article.author.family.username }}</b></h4>
+									<p class="description">
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="share">
+						<div class="row">
+							<h4 class="col-sm-6 col-xs-12">Поделитесь этой статьёй</h4>
+							<div class="col-sm-6 col-xs-12 ssk-group" data-url="http://saresep.kg/article/556/">
+								<a href="" class="ssk ssk-facebook" data-image="image.jpg"></a>
+								<a href="" class="ssk ssk-twitter"></a>
+								<a href="" class="ssk ssk-google-plus"></a>
+								<a href="" class="ssk ssk-vk"></a>
+							</div>
+						</div>
+					</div>
+					<div class="comments">
+						<div id="disqus_thread"></div>
+						<script>
+							var disqus_config = function () {
+								this.page.url = 'http://saresep.kg/article/556/';
+								this.page.identifier = 556;
+							};
+							(function() {
+								var d = document, s = d.createElement('script');
 
-{% block script %}
-    <script>
-        $('.categoryLatestArticle').masonry({
-            itemSelector: '.articles',
-        });
+								s.src = 'https://saresep.disqus.com/embed.js';
 
-        $(document).ready(function () {
-            // Target your .container, .wrapper, .post, etc.
-            $(".articleText div").fitVids();
-        });
-    </script>
+								s.setAttribute('data-timestamp', +new Date());
+								(d.head || d.body).appendChild(s);
+							})();
+						</script>
+						<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+					</div>
+					<div class="other-articles">
+						<div class="widget">
+							<h4 class="widget-title">БАШКА МАКАЛДАР</h4>
+							<div class="articles">
+								<ul class="_articles">
+									<div class="row">
+                                        {% for i in by_category %}
+										<li class="col-md-6 col-sm-6 col-xs-12">
+											<a href="#">
+												<article class="card">
+													<div class="featured" style="background-image: url('{{ i.image.url }}')"></div>
+													<div class="inner">
+														<div class="info">
+															<span class="author">{{ i.author.family.username }}</span>
+															<br>
+															<span class="type">{{ i.tag.name }}</span> &#8226; <time pubdate="">{{ i.date }}</time>
+														</div>
+														<h3>{{ i.title }}</h3>
+													</div>
+												</article>
+											</a>
+										</li>
+                                        {% endfor %}
+									</div>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</article>
+			<div class="col-md-4">
+				<div class="widget">
+					<h4 class="widget-title">БАШКА МАКАЛДАР</h4>
+					<div class="other-articles">
+						<div class="articles">
+							<ul class="_articles">
+								<div class="row">
+									<li class="col-xs-12">
+										<a href="#">
+											<article class="card">
+												<div class="featured"></div>
+												<div class="inner">
+													<div class="info">
+														<span class="author">Эсен Өмүракунов</span>
+														<br>
+														<span class="type">Макала</span> &#8226; <time pubdate="">07:90</time>
+													</div>
+													<h3>Алмаз Исанов: Туура нерсени баштабай өкүнгөндөн көрө, кыла албай калып өкүнгөн жакшы</h3>
+												</div>
+											</article>
+										</a>
+									</li>
+									<li class="col-xs-12">
+										<a href="#">
+											<article class="card">
+												<div class="featured"></div>
+												<div class="inner">
+													<div class="info">
+														<span class="author">Эсен Өмүракунов</span>
+														<br>
+														<span class="type">Макала</span> &#8226; <time pubdate="">07:90</time>
+													</div>
+													<h3>Алмаз Исанов: Туура нерсени баштабай өкүнгөндөн көрө, кыла албай калып өкүнгөн жакшы</h3>
+												</div>
+											</article>
+										</a>
+									</li>
+									<li class="col-xs-12">
+										<a href="#">
+											<article class="card">
+												<div class="featured"></div>
+												<div class="inner">
+													<div class="info">
+														<span class="author">Эсен Өмүракунов</span>
+														<br>
+														<span class="type">Макала</span> &#8226; <time pubdate="">07:90</time>
+													</div>
+													<h3>Алмаз Исанов: Туура нерсени баштабай өкүнгөндөн көрө, кыла албай калып өкүнгөн жакшы</h3>
+												</div>
+											</article>
+										</a>
+									</li>
+									<li class="col-xs-12">
+										<a href="#">
+											<article class="card">
+												<div class="featured"></div>
+												<div class="inner">
+													<div class="info">
+														<span class="author">Эсен Өмүракунов</span>
+														<br>
+														<span class="type">Макала</span> &#8226; <time pubdate="">07:90</time>
+													</div>
+													<h3>Алмаз Исанов: Туура нерсени баштабай өкүнгөндөн көрө, кыла албай калып өкүнгөн жакшы</h3>
+												</div>
+											</article>
+										</a>
+									</li>
+								</div>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="ad col-md-12 col-sm-6 col-xs-12">
+					<img alt="add" src="http://data.zanoza.kg/banner/2016-07-15_14-30-09_100166.jpg" class="img-responsive center-block">
+				</div>
+				<div class="ad col-md-12 col-sm-6 col-xs-12">
+					<img alt="add" src="http://data.zanoza.kg/banner/2016-07-11_15-13-16_711740.gif" class="img-responsive center-block">
+				</div>
+			</div>
+		</div>
+
 {% endblock %}

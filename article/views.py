@@ -3,6 +3,7 @@ from news.views import *
 from datetime import datetime, timedelta
 from news.forms import *
 
+
 # Create your views here.
 
 
@@ -15,13 +16,16 @@ def article(request, article_id):
     x.rating = x.view + x.rate
     x.save()
     threshold = datetime.now() - timedelta(days=14)
-    args= dict(form=CommentFormArticle, categories_nav=Category.objects.order_by('slug','name'),
-               article=Article.objects.get(id=article_id),
-               comments=ArticleComment.objects.filter(relation_id=article_id),
-               article_by_category=Article.objects.filter(category_id=x.category_id,
-               published=True,
-               date__gte=threshold).order_by('-view').exclude(id=x.id)[0:8])
-    return render(request,'article.html', args)
+    args = {
+        "categories_nav": Category.objects.order_by('slug', 'name')[0:7],
+        "categories": Category.objects.all()[0:8],
+        "categories1": Category.objects.all()[8:16],
+        'article': x,
+        'by_category': Article.objects.filter(category_id=x.category_id,
+                                              published=True,
+                                              date__gte=threshold).order_by('-view').exclude(id=x.id)[0:4]
+    }
+    return render(request, 'article.html', args)
 
 
 def addcomment(request, article_id):

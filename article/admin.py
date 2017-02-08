@@ -20,11 +20,19 @@ class ArticleInline(admin.StackedInline):
 
 class ArticleAdmin(admin.ModelAdmin):
     fields = 'title date cart body audio image keys published category tag author'.split()
-    list_display = '__unicode__ published cart date view category author'.split()
+    list_display = '__unicode__ img published cart date view category author'.split()
     list_per_page = 20
     list_filter = 'date category published author'.split()
     list_editable = 'cart category'.split()
     inlines = [ArticleInline]
+
+    def img(self, obj):
+        try:
+            return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+        except:
+            return '<p>No Cover</p>'
+
+    img.allow_tags = True
 
 
 admin.site.register(Article, ArticleAdmin)

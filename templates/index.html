@@ -24,290 +24,154 @@
     <meta name="twitter:description" content="{% block description_twitter %}{% endblock %}">
     <meta name="twitter:image" content="{{ request.get_host }}{% block image_twitter %}{% endblock %}">
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'favicon/apple-icon-57x57.png' %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'favicon/apple-icon-60x60.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'favicon/apple-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'favicon/apple-icon-76x76.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'favicon/apple-icon-114x114.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'favicon/apple-icon-120x120.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicon/apple-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicon/apple-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-icon-180x180.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'favicon/android-icon-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'favicon/favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    {% block static %}{% endblock %}
 </head>
 <body>
-<header>
-    <div class="headbanner hidden-sm hidden-xs">
-        <div class="container">
-            <div class="col-md-8 bannerlogo">
-                <a href="{% url 'news.views.main' %}"><img src="{% static 'css/logo-main.svg' %}" alt=""/></a>
-                <span style="display: inline-block; position: absolute; font-size: 22px; margin-left: 0; padding-top: 5px; padding-left: 10px; color: white; font-family: MuseoCyrillic-500;"
-                      class="catstring">{% block category_string %}{% endblock %}</span>
-
-                <span>{% now "d F Y, H:i, l" %}</span>
+<header class="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div style="float:left">
+                <button class="hamburger hamburger--slider zema-nav-trigger hidden-md hidden-lg" onclick="zemanav()"
+                        tabindex="0" aria-label="Menu" role="button" aria-controls="navigation">
+                    <div class="hamburger-box">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                </button>
+					<span class="logo">
+						<a href="/">
+                            <img height="35" src="{% static 'logoz.svg' %}" alt="">
+                        </a>
+					</span>
             </div>
-            <div class="col-md-4 text-right">
+            <div class="hidden-sm hidden-xs daily-info text-right">
+                <h5 class="today">
+                    <iframe src="http://free.timeanddate.com/clock/i5kvdr33/n384/tlkg70/fn10/fcfff/tct/pct/ahr/tt0"
+                            frameborder="0" width="264" height="19" allowTransparency="true"></iframe>
+
+                </h5>
+                <div class="currencies">
+                    <h5><span><i class="glyphicon glyphicon-triangle-bottom"></i></span> <span>USD</span>
+                        <span>68.35</span></h5>
+                    <h5><span><i class="glyphicon glyphicon-triangle-top"></i></span> <span>EUR</span>
+                        <span>74.54</span></h5>
+                    <h5><span><i class="glyphicon glyphicon-triangle-top"></i></span> <span>RUB</span>
+                        <span>1.091</span></h5>
+                    <h5><span><i class="glyphicon glyphicon-triangle-top"></i></span> <span>KZT</span>
+                        <span>0.999</span></h5>
+                </div>
             </div>
         </div>
     </div>
-    <nav class="navbar navbar-default navbar-saresep">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span style="background-color: #fff;" class="icon-bar"></span>
-                <span style="background-color: #fff;" class="icon-bar"></span>
-                <span style="background-color: #fff;" class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand hidden-md hidden-lg" href="{% url 'news.views.main' %}"><img
-                    src="{% static 'css/logo-main.svg' %}" alt=""
-                    height="20px"/></a><span
-                style="display: inline-block; position: absolute; font-size: 16px; margin-left: -10px; padding-top: 18px; color: white; font-family: MuseoCyrillic-500;"
-                class="catstring">{% block category_string2 %}{% endblock %}</span>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav hidden-lg hidden-md hidden-sm">
+    <div class="container-fluid zema-nav-desktop">
+        <nav class="hidden-sm hidden-xs">
+            <div class="zema-nav-content">
+                <ul>
+                    {% for i in categories_nav %}
+                        {% if i.name == active %}
+                        <li class="active"><a href="/category/{{ i.id }}/">{{ i.name }}</a></li>
+                        {% else %}
+                        <li><a href="/category/{{ i.id }}/">{{ i.name }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <nav class="zema-nav">
+        <div class="zema-nav-content">
+            <ul>
                 {% for i in categories_nav %}
-                    {% if category_name.id == i.id %}
-                        <li id="background-{{ i.id }}"><a href="/#{{ i.id }}"><i class="fa fa-circle"></i>{{ i.name }}
-                        </a></li>
-                        <style>
-                            .nav > li#background-{{ i.id }} > a > i {
-                                color: {{ i.colour }};
-                            }
-
-                            .nav > li#background-{{ i.id }} > a:hover > i {
-                                color: {{ i.colour }};
-                                opacity: 1;
-                            }
-
-                            .nav > li#background-{{ i.id }} > a:hover {
-                                color: {{ i.colour }};
-                            }
-                        </style>
-                    {% else %}
-                        <li id="background-{{ i.id }}"><a href="/category/{{ i.id }}/1"><i
-                                class="fa fa-circle"></i>{{ i.name }}
-                        </a></li>
-                        <style>
-                            .nav > li#background-{{ i.id }} > a > i {
-                                color: {{ i.colour }};
-                                opacity: 0.7;
-                            }
-
-                            .nav > li#background-{{ i.id }} > a:hover > i {
-                                color: {{ i.colour }};
-                                opacity: 1;
-                            }
-
-                            .nav > li#background-{{ i.id }} > a:hover {
-                                color: {{ i.colour }};
-                            }
-                        </style>
-                    {% endif %}
+                    <li><a href="/category/{{ i.id }}/">{{ i.name }}</a></li>
                 {% endfor %}
             </ul>
-            <ul class="nav navbar-nav hidden-xs">
-                {% for i in categories_nav|slice:"7" %}
-                    {% if category_name.id == i.id %}
-                        <li id="background-{{ i.id }}"><a href="/#{{ i.id }}"><i class="fa fa-circle"></i>{{ i.name }}
-                        </a></li>
-                        <style>
-                            .nav > li#background-{{ i.id }} > a > i {
-                                color: {{ i.colour }};
-                            }
-
-                            .nav > li#background-{{ i.id }} > a:hover > i {
-                                color: {{ i.colour }};
-                                opacity: 1;
-                            }
-
-                            .nav > li#background-{{ i.id }} > a:hover {
-                                color: {{ i.colour }};
-                            }
-                        </style>
-                    {% else %}
-                        <li id="background-{{ i.id }}"><a href="/category/{{ i.id }}/1"><i
-                                class="fa fa-circle"></i>{{ i.name }}
-                        </a></li>
-                        <style>
-                            .nav > li#background-{{ i.id }} > a > i {
-                                color: {{ i.colour }};
-                                opacity: 0.7;
-                            }
-
-                            .nav > li#background-{{ i.id }} > a:hover > i {
-                                color: {{ i.colour }};
-                                opacity: 1;
-                            }
-
-                            .nav > li#background-{{ i.id }} > a:hover {
-                                color: {{ i.colour }};
-                            }
-                        </style>
-                    {% endif %}
-                {% endfor %}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Дагы <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        {% for i in categories_nav|slice:"7:" %}
-                            {% if category_name.id == i.id %}
-                                <li id="background-{{ i.id }}"><a href="/#{{ i.id }}"><i
-                                        class="fa fa-circle"></i>{{ i.name }}
-                                </a></li>
-                                <style>
-                                    .nav > li#background-{{ i.id }} > a > i {
-                                        color: {{ i.colour }};
-                                    }
-
-                                    .nav > li#background-{{ i.id }} > a:hover > i {
-                                        color: {{ i.colour }};
-                                        opacity: 1;
-                                    }
-
-                                    .nav > li#background-{{ i.id }} > a:hover {
-                                        color: {{ i.colour }};
-                                    }
-                                </style>
-                            {% else %}
-                                <li id="in-dropdown-background-{{ i.id }}"><a href="/category/{{ i.id }}/1"><i
-                                        style="margin-right: 5px;"
-                                        class="fa fa-circle"></i>{{ i.name }}
-                                </a></li>
-                                <style>
-                                    li#in-dropdown-background-{{ i.id }} > a {
-                                        padding-top: 5px;
-                                        padding-bottom: 5px;
-                                    }
-
-                                    li#in-dropdown-background-{{ i.id }} > a > i {
-                                        color: {{ i.colour }};
-                                        opacity: 0.7;
-                                    }
-
-                                    li#in-dropdown-background-{{ i.id }} > a:hover {
-                                        background-color: transparent;
-                                    }
-
-                                    li#in-dropdown-background-{{ i.id }} > a:hover > i {
-                                        color: {{ i.colour }};
-                                        opacity: 1;
-                                    }
-
-                                    li#in-dropdown-background-{{ i.id }} > a:hover {
-                                        color: {{ i.colour }};
-                                    }
-                                </style>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </li>
-            </ul>
+            <div class="currencies-in-navbar">
+                <div class="col-xs-6"><span><i class="glyphicon glyphicon-triangle-bottom"></i></span> <span>USD</span>
+                    <span>68.35</span></div>
+                <div class="col-xs-6"><span><i class="glyphicon glyphicon-triangle-top"></i></span> <span>EUR</span>
+                    <span>74.54</span></div>
+                <div class="col-xs-6"><span><i class="glyphicon glyphicon-triangle-top"></i></span> <span>RUB</span>
+                    <span>1.091</span></div>
+                <div class="col-xs-6"><span><i class="glyphicon glyphicon-triangle-top"></i></span> <span>KZT</span>
+                    <span>0.999</span></div>
+            </div>
         </div>
     </nav>
 </header>
-{% block content %}{% endblock %}
-<a href="#0" class="cd-top">Top</a>
-{% block date_articles %}{% endblock %}
-<footer class="container-fluid">
-    <div class="col-md-2">
-        <img class="center-block" src="{% static 'css/logo-main.svg' %}" alt=""/>
-    </div>
-    <div class="col-md-4">
-        <div class="row text-center">
-            <span>Бишкек ш., Бөкөнбаев көч., 195/71</span>
+<main>
+    {% block content %}{% endblock %}
+</main>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img height="50" src="{% static 'logoz.svg' %}" alt="">
+                        <div class="about-us">
+                            We are a news agency. We tell truth and make deep analysis on current situation of the
+                            world.
+                        </div>
+                        <div class="ssk-group">
+                            <a href="" class="ssk ssk-facebook ssk-sm"></a>
+                            <a href="" class="ssk ssk-twitter ssk-sm"></a>
+                            <a href="" class="ssk ssk-google-plus ssk-sm"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <span class="footer-header">SARESEP</span>
+                <ul class="footer-menu">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            {% for i in categories %}
+                                <li><a href="/category/{{ i.id }}/">{{ i.name }}</a></li>
+                            {% endfor %}
+                        </div>
+                        <div class="col-xs-6">
+                            {% for i in categories1 %}
+                                <li><a href="/category/{{ i.id }}/">{{ i.name }}</a></li>
+                            {% endfor %}                            </div>
+                    </div>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="row text-center">
-            <span><i class="fa fa-phone fa-lg"></i><a href="tel:+996312936555">0 (312) 93 65 55</a></span>
-            <span><i class="fa fa-envelope-o fa-lg"></i><a href="tel:+996312936555">saresepkg13@gmail.com</a></span>
+    <hr>
+    <div class="container">
+        <div class="col-xs-6">
+            <ul class="second-footer-menu">
+                <div class="row">
+                    <li><a href="#">o nas</a></li>
+                    <li><a href="#">kontakty</a></li>
+                </div>
+            </ul>
         </div>
-    </div>
-    <div class="col-md-2 text-center">
-        <span class="fa-stack fa-lg">
-            <a href="">
-                <i class="fa fa-circle fa-stack-2x" style="color: #3b5998;"></i>
-                <i class="fa fa-facebook fa-stack-1x fa-inverse" style="color: #eee;"></i>
-            </a>
-        </span>
-        <span class="fa-stack fa-lg">
-            <a href="">
-                <i class="fa fa-circle fa-stack-2x" style="color: #4099ff;"></i>
-                <i class="fa fa-twitter fa-stack-1x fa-inverse" style="color: #eee;"></i>
-            </a>
-        </span>
-        <span class="fa-stack fa-lg">
-            <a href="">
-                <i class="fa fa-circle fa-stack-2x" style="color: #d34836;"></i>
-                <i class="fa fa-google-plus fa-stack-1x fa-inverse" style="color: #eee;"></i>
-            </a>
-        </span>
+        <div class="col-xs-6 text-right">
+            <span class="copyright">&copy; saresep 2017</span>
+        </div>
     </div>
 </footer>
-<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/masonry.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.fitvids.js' %}"></script>
+<script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'js/jquery.matchHeight-min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/zema-nav.js' %}"></script>
+<script src="{% static 'js/social-share-kit.min.js' %}"></script>
+<script src="{% static 'js/prefixfree.min.js' %}"></script>
+<script src="https://npmcdn.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $(window).bind('scroll', function () {
-            var navHeight = 100;
-            if ($(window).scrollTop() > navHeight) {
-                $('nav').addClass('navbar-fixed-top');
-            }
-            else {
-                $('nav').removeClass('navbar-fixed-top');
-            }
-        });
-    });
-    if ($('.collapse').width > $('.nav').width) {
-        console.log($('.collapse').width > $('.nav').width)
-    }
-</script>
-
-<script type="text/javascript">
-    var dollar = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-    var euro = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22EURKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-
-    jQuery(document).ready(function($){
-	// browser window scroll (in pixels) after which the "back to top" link is shown
-	var offset = 300,
-		//browser window scroll (in pixels) after which the "back to top" link opacity is reduced
-		offset_opacity = 1200,
-		//duration of the top scrolling animation (in ms)
-		scroll_top_duration = 700,
-		//grab the "back to top" link
-		$back_to_top = $('.cd-top');
-
-	//hide or show the "back to top" link
-	$(window).scroll(function(){
-		( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
-		if( $(this).scrollTop() > offset_opacity ) {
-			$back_to_top.addClass('cd-fade-out');
-		}
+$('.card').matchHeight();
+$(document).ready(function(){
+	$('.main-carousel').flickity({
+		// options
+		cellAlign: 'left',
+		contain: true,
+		autoPlay: true,
+		wrapAround: true,
+		pageDots: true,
+		prevNextButtons: false
 	});
-
-	//smooth scroll to top
-	$back_to_top.on('click', function(event){
-		event.preventDefault();
-		$('body,html').animate({
-			scrollTop: 0 ,
-		 	}, scroll_top_duration
-		);
-	});
-
 });
 </script>
-{% block script %}{% endblock %}
 </body>
 </html>

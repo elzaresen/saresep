@@ -36,8 +36,9 @@ class Category(models.Model):
         db_table = 'categories'
         verbose_name = u"Категория"
         verbose_name_plural = u"Категории"
-        ordering = ['slug','-name']
-    slug = models.IntegerField(null=True,blank=True, verbose_name='Место')
+        ordering = ['slug', '-name']
+
+    slug = models.IntegerField(null=True, blank=True, verbose_name='Место')
     name = models.CharField(max_length=100, verbose_name="Название")
     colour = models.CharField(max_length=50, null=True, verbose_name="Цвет")
 
@@ -45,7 +46,7 @@ class Category(models.Model):
         return self.name
 
     def get_articles(self):
-        return self.article_set.filter(date__gte=dead_date(), published=True)[0:4]
+        return self.article_set.filter(date__gte=dead_date(), published=True)[0:5]
 
     def get_news(self):
         return self.news_set.filter(date__gte=dead_date(), published=True)[0:8]
@@ -72,7 +73,8 @@ class Article(models.Model):
         ('1', 'Биринчи'),
         ('2', 'Экинчи'),
         ('3', 'Үчүнчү'),
-        ('4', 'Төртүнчү')
+        ('4', 'Төртүнчү'),
+        ('5', 'Бешинчи'),
     )
     cart = models.CharField(max_length=1, choices=CART_CHOICES, null=True, blank=True)
     category = models.ForeignKey(Category, verbose_name='Категория')
@@ -80,7 +82,7 @@ class Article(models.Model):
     rate = models.IntegerField(default=0)
     view = models.IntegerField(default=0, verbose_name='Просмотры')
     rating = models.IntegerField(default=0)
-    date = models.DateTimeField(blank=True, null=True, verbose_name='Дата')
+    date = models.DateTimeField(null=True, verbose_name='Дата')
     image = models.FileField(upload_to=image_upload_to, null=True, blank=False)
     tag = models.ForeignKey(Tag, null=True, verbose_name="Тип")
     keys = models.CharField(max_length=1000, blank=True, null=True, verbose_name='Ключи')

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 595.3 841.9" style="enable-background:new 0 0 595.3 841.9;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#XMLID_19_);fill:#fff;}
+	.st1{fill:#fff;}
+	.st2{clip-path:url(#XMLID_20_);fill:#fff;}
+	.st3{clip-path:url(#XMLID_21_);fill:#fff;}
+</style>
+<g id="XMLID_16_">
+	<defs>
+		<rect id="XMLID_17_" x="90" y="327.6" width="100" height="85.4"/>
+	</defs>
+	<clipPath id="XMLID_19_">
+		<use xlink:href="#XMLID_17_"  style="overflow:visible;"/>
+	</clipPath>
+	<path id="XMLID_18_" class="st0" d="M140.2,348.6v7.5h-11.8v-8c0-7.5-4-12.1-13.1-12.1c-8.9,0-13.1,4.5-13.1,12.1v44.3
+		c0,7.5,4.1,12.1,13.1,12.1c9.1,0,13.1-4.5,13.1-12.1v-10.9h11.8V392c0,12.7-8,21.1-25.2,21.1c-17,0-25-8.4-25-21.1v-43.3
+		c0-12.7,8-21.1,25-21.1C132.2,327.6,140.2,336,140.2,348.6"/>
+</g>
+<path id="XMLID_13_" class="st1" d="M177.9,339l12.6,48.3h-24.8L177.9,339z M169.7,328.4l-21.3,83.8h11.5l4.3-16.9h28.2l4.3,16.9
+	H209l-21.3-83.8H169.7z"/>
+<g id="XMLID_8_">
+	<defs>
+		<rect id="XMLID_9_" x="90" y="327.6" width="415.2" height="85.4"/>
+	</defs>
+	<clipPath id="XMLID_20_">
+		<use xlink:href="#XMLID_9_"  style="overflow:visible;"/>
+	</clipPath>
+	<path id="XMLID_10_" class="st2" d="M242.1,370.8c9.2,0,13.7-3.2,13.7-11.2v-11.1c0-7.7-3.7-11.5-12.7-11.5h-11.9v33.9H242.1z
+		 M243.1,328.4c17.5,0,25,7.8,25,20.5v10.1c0,13.3-8.3,20.2-26,20.2h-11v33h-12.4v-83.8H243.1z"/>
+</g>
+<polygon id="XMLID_7_" class="st1" points="277.8,328.4 277.8,412.2 323.7,412.2 323.7,403.7 290.2,403.7 290.2,373.9 317.5,373.9
+	317.5,365.5 290.2,365.5 290.2,336.9 323.7,336.9 323.7,328.4 "/>
+<g id="XMLID_4_">
+	<defs>
+		<rect id="XMLID_5_" x="90" y="327.6" width="415.2" height="85.4"/>
+	</defs>
+	<clipPath id="XMLID_21_">
+		<use xlink:href="#XMLID_5_"  style="overflow:visible;"/>
+	</clipPath>
+	<path id="XMLID_6_" class="st3" d="M384.4,348.6v7.5h-11.8v-8c0-7.5-4-12.1-13.1-12.1c-8.9,0-13.1,4.5-13.1,12.1v44.3
+		c0,7.5,4.1,12.1,13.1,12.1c9.1,0,13.1-4.5,13.1-12.1v-10.9h11.8V392c0,12.7-8,21.1-25.2,21.1c-17,0-25-8.4-25-21.1v-43.3
+		c0-12.7,8-21.1,25-21.1C376.4,327.6,384.4,336,384.4,348.6"/>
+</g>
+<polygon id="XMLID_3_" class="st1" points="395.7,328.4 395.7,412.2 441.5,412.2 441.5,403.7 408.1,403.7 408.1,373.9 435.3,373.9
+	435.3,365.5 408.1,365.5 408.1,336.9 441.5,336.9 441.5,328.4 "/>
+<polygon id="XMLID_2_" class="st1" points="453,328.4 453,412.2 465.4,412.2 465.4,336.9 492.8,336.9 492.8,412.2 505.3,412.2
+	505.3,328.4 "/>
+</svg>
