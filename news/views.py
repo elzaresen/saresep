@@ -37,7 +37,7 @@ def main(request):
         args['a5'] = Article.objects.filter(cart='5', published=True).first()
     except:
         pass
-    threshold = datetime.now() - timedelta(hours=24)
+    threshold = datetime.now() - timedelta(days=14)
     args['last'] = Article.objects.filter(published=True, date__gte=threshold).order_by('-date', '-view')[0:4]
     args['categories'] = Category.objects.all()
     return render(request, 'main.html', args)
