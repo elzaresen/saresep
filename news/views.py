@@ -61,7 +61,7 @@ def category(request, category_id, page_number):
     args['all'] = current[4:20]
     args['next'] = page_number + 1
     args['previous'] = page_number - 1
-    args['categories_nav'] = Category.objects.order_by('slug', 'name')
+    args['categories_nav'] = Category.objects.order_by('slug', 'name')[0:7]
     args['active'] = category_name.name
     args['category_name'] = category_name
     args["categories2"] = Category.objects.all()[0:8]
