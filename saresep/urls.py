@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^article/(?P<article_id>\d+)/$', 'article.views.article'),
     url(r'^addcomment_article/(?P<article_id>\d+)/$', 'article.views.addcomment'),
-    url(r'^category/(\d+)/$', 'news.views.category'),
+    url(r'^category/(\d+)/(\d+)/$', 'news.views.category'),
     url(r'^redactor/', include('redactor.urls')),
     url(r'^$', 'news.views.main', name="index"),
     url(r'^static/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATIC_ROOT}),

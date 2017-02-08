@@ -7,7 +7,7 @@ article header{
 	background-position: center center;
 	background-size: cover;
 	text-align: center;
-	font-family: 'Open Sans'
+	font-family: 'Open Sans';
 
 	background-blend-mode: darken;
 }
@@ -117,7 +117,7 @@ main>.container{
 		margin: 5px 0;
 		font-size: 20px;
 	}
-	article datetime{
+	article .datetime{
 		margin: 5px 0 20px 0;
 		font-size: 12px;
 		display: block;
@@ -169,7 +169,6 @@ main>.container{
 	/*transition: all 0.3s cubic-bezier(.25,.8,.25,1);*/
 }
 .widget{
-	display: inline-block;
 	margin-top: 25px;
 }
 .card {

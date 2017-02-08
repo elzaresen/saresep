@@ -155,7 +155,7 @@
 			</section>
         {% for i in categories %}
 			<section class="category">
-				<h2 style="color: {{ i.colour }}; border-color: {{ i.colour }}">{{ i.name }}</h2>
+			<h2 style="color: {{ i.colour }}; border-color: {{ i.colour }}">{{ i.name }}</h2>
 				<div class="articles">
 					<ul class="_articles">
 						<div class="row">
@@ -185,4 +185,27 @@
 		</section>
         {% endfor %}
 	</div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'js/jquery.matchHeight-min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/zema-nav.js' %}"></script>
+<script src="{% static 'js/social-share-kit.min.js' %}"></script>
+<script src="{% static 'js/prefixfree.min.js' %}"></script>
+<script src="https://npmcdn.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
+<script type="text/javascript">
+$('.card').matchHeight();
+$(document).ready(function(){
+	$('.main-carousel').flickity({
+		// options
+		cellAlign: 'left',
+		contain: true,
+		autoPlay: true,
+		wrapAround: true,
+		pageDots: true,
+		prevNextButtons: false
+	});
+});
+</script>
 {% endblock %}

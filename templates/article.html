@@ -17,17 +17,19 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/social-share-kit.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/article.css' %}">
 {% endblock %}
 {% block content %}
     <article>
 			<header style="background-image: url('{{ article.image.url }}')">
 				<div class="container hidden-xs">
-					<span class="category" style="background-color: #03A9F4;">Дүйнө</span>
-					<h1>Түркия Орусия жана Израил менен эмнеге элдешти?</h1>
-					<datetime>26 Сентябрь 2016</datetime>
+					<span class="category" style="background-color: {{ article.category.colour }};">
+                        {{ article.category.name }}
+                    </span>
+					<h1>{{ article.title }}</h1>
+					<datetime>{{ article.date }}</datetime>
 				</div>
 			</header>
 		</article>
@@ -59,7 +61,7 @@
 					<div class="share">
 						<div class="row">
 							<h4 class="col-sm-6 col-xs-12">Поделитесь этой статьёй</h4>
-							<div class="col-sm-6 col-xs-12 ssk-group" data-url="http://saresep.kg/article/556/">
+							<div class="col-sm-6 col-xs-12 ssk-group" data-url="http://saresep.kg/article/{{ article.id }}/">
 								<a href="" class="ssk ssk-facebook" data-image="image.jpg"></a>
 								<a href="" class="ssk ssk-twitter"></a>
 								<a href="" class="ssk ssk-google-plus"></a>
@@ -93,7 +95,7 @@
 									<div class="row">
                                         {% for i in by_category %}
 										<li class="col-md-6 col-sm-6 col-xs-12">
-											<a href="#">
+											<a href="/article/{{ i.id }}/">
 												<article class="card">
 													<div class="featured" style="background-image: url('{{ i.image.url }}')"></div>
 													<div class="inner">
@@ -102,7 +104,7 @@
 															<br>
 															<span class="type">{{ i.tag.name }}</span> &#8226; <time pubdate="">{{ i.date }}</time>
 														</div>
-														<h3>{{ i.title }}</h3>
+													<h3>{{ i.title }}</h3>
 													</div>
 												</article>
 											</a>
@@ -122,66 +124,23 @@
 						<div class="articles">
 							<ul class="_articles">
 								<div class="row">
+                                    {% for i in articles %}
 									<li class="col-xs-12">
-										<a href="#">
-											<article class="card">
-												<div class="featured"></div>
-												<div class="inner">
-													<div class="info">
-														<span class="author">Эсен Өмүракунов</span>
-														<br>
-														<span class="type">Макала</span> &#8226; <time pubdate="">07:90</time>
+										<a href="/article/{{ i.id }}/">
+												<article class="card">
+													<div class="featured" style="background-image: url('{{ i.image.url }}')"></div>
+													<div class="inner">
+														<div class="info">
+															<span class="author">{{ i.author.family.username }}</span>
+															<br>
+															<span class="type">{{ i.tag.name }}</span> &#8226; <time pubdate="">{{ i.date }}</time>
+														</div>
+													<h3>{{ i.title }}</h3>
 													</div>
-													<h3>Алмаз Исанов: Туура нерсени баштабай өкүнгөндөн көрө, кыла албай калып өкүнгөн жакшы</h3>
-												</div>
-											</article>
-										</a>
+												</article>
+											</a>
 									</li>
-									<li class="col-xs-12">
-										<a href="#">
-											<article class="card">
-												<div class="featured"></div>
-												<div class="inner">
-													<div class="info">
-														<span class="author">Эсен Өмүракунов</span>
-														<br>
-														<span class="type">Макала</span> &#8226; <time pubdate="">07:90</time>
-													</div>
-													<h3>Алмаз Исанов: Туура нерсени баштабай өкүнгөндөн көрө, кыла албай калып өкүнгөн жакшы</h3>
-												</div>
-											</article>
-										</a>
-									</li>
-									<li class="col-xs-12">
-										<a href="#">
-											<article class="card">
-												<div class="featured"></div>
-												<div class="inner">
-													<div class="info">
-														<span class="author">Эсен Өмүракунов</span>
-														<br>
-														<span class="type">Макала</span> &#8226; <time pubdate="">07:90</time>
-													</div>
-													<h3>Алмаз Исанов: Туура нерсени баштабай өкүнгөндөн көрө, кыла албай калып өкүнгөн жакшы</h3>
-												</div>
-											</article>
-										</a>
-									</li>
-									<li class="col-xs-12">
-										<a href="#">
-											<article class="card">
-												<div class="featured"></div>
-												<div class="inner">
-													<div class="info">
-														<span class="author">Эсен Өмүракунов</span>
-														<br>
-														<span class="type">Макала</span> &#8226; <time pubdate="">07:90</time>
-													</div>
-													<h3>Алмаз Исанов: Туура нерсени баштабай өкүнгөндөн көрө, кыла албай калып өкүнгөн жакшы</h3>
-												</div>
-											</article>
-										</a>
-									</li>
+                                    {% endfor %}
 								</div>
 							</ul>
 						</div>
@@ -196,4 +155,10 @@
 			</div>
 		</div>
 
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/zema-nav.js' %}"></script>
+<script src="{% static 'js/social-share-kit.min.js' %}"></script>
 {% endblock %}
