@@ -46,7 +46,7 @@ class Category(models.Model):
         return self.name
 
     def get_articles(self):
-        return self.article_set.filter(date__gte=dead_date(), published=True)[0:5]
+        return self.article_set.filter(published=True)[0:5]
 
     def get_news(self):
         return self.news_set.filter(date__gte=dead_date(), published=True)[0:8]
