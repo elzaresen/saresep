@@ -50,13 +50,13 @@
 
                 </h5>
                 <div class="currencies">
-                    <h5><span><i class="glyphicon glyphicon-triangle-bottom"></i></span> <span>USD</span>
+                    <h5><span>USD</span>
                         <span id="dollarrate2"></span></h5>
-                    <h5><span><i class="glyphicon glyphicon-triangle-top"></i></span> <span>EUR</span>
+                    <h5><span>EUR</span>
                         <span id="eurorate2"></span></h5>
-                    <h5><span><i class="glyphicon glyphicon-triangle-top"></i></span> <span>RUB</span>
+                    <h5><span>RUB</span>
                         <span id="rubrate2"></span></h5>
-                    <h5><span><i class="glyphicon glyphicon-triangle-top"></i></span> <span>KZT</span>
+                    <h5><span>KZT</span>
                         <span id="tengerate2"></span></h5>
                 </div>
             </div>
@@ -85,14 +85,14 @@
                 {% endfor %}
             </ul>
             <div class="currencies-in-navbar">
-                <div class="col-xs-6"><span><span>USD</span>
-                    <span>68.35</span></div>
-                <div class="col-xs-6"><span><span>EUR</span>
-                    <span>74.54</span></div>
-                <div class="col-xs-6"><span><span>RUB</span>
-                    <span>1.091</span></div>
-                <div class="col-xs-6"><span><span>KZT</span>
-                    <span>0.999</span></div>
+                <div class="col-xs-6"><span>USD</span>
+                    <span id="dollarrate"></span></div>
+                <div class="col-xs-6"><span>EUR</span>
+                    <span id="eurorate"></span></div>
+                <div class="col-xs-6"><span>RUB</span>
+                    <span id="rubrate"></span></div>
+                <div class="col-xs-6"><span>KZT</span>
+                    <span id="tengerate"></span></div>
             </div>
         </div>
     </nav>
@@ -153,31 +153,6 @@
     </div>
 </footer>
 {% block script %}
-    <script>
-        var dollar = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-        var euro = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22EURKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-        var rub = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22RUBKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-        var tenge = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22KZTKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-
-        $.getJSON(dollar, function (s) {
-            $('#dollarrate').append(s.query.results.rate.Rate)
-            $('#dollarrate2').append(s.query.results.rate.Rate)
-        })
-        $.getJSON(euro, function (s) {
-            $('#eurorate').append(s.query.results.rate.Rate)
-            $('#eurorate2').append(s.query.results.rate.Rate)
-
-
-        })
-        $.getJSON(rub, function (s) {
-            $('#rubrate').append(s.query.results.rate.Rate)
-            $('#rubrate2').append(s.query.results.rate.Rate)
-        })
-        $.getJSON(tenge, function (s) {
-            $('#tengerate').append(s.query.results.rate.Rate)
-            $('#tengerate2').append(s.query.results.rate.Rate)
-        })
-    </script>
 {% endblock %}
 </body>
 </html>

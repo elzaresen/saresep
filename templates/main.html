@@ -16,196 +16,230 @@
 {% block category_string %} &mdash; {{ category_name }}{% endblock %}
 {% block category_string2 %} &mdash; {{ category_name }}{% endblock %}
 {% block static %}
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700i|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-	<link rel="stylesheet" href="https://npmcdn.com/flickity@2.0/dist/flickity.min.css">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/social-share-kit.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700i|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://npmcdn.com/flickity@2.0/dist/flickity.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/social-share-kit.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 {% endblock %}
 {% block content %}
-		<div class="main-carousel hidden-lg hidden-md">
-			<div class="carousel-cell" style="background-image: url('{{ a1.image.url }}');">
-				<a href="/article/{{ a1.id }}/">
-					<div>
-						<div class="container">
-							<span style="background-color: {{ a1.category.colour }};" class="category">{{ a1.category.name }}</span>
-							<h1>{{ a1.title }}</h1>
-							<span>{{ a1.date }}</span>
-						</div>
-					</div>
-				</a>
-			</div>
-				<div class="carousel-cell" style="background-image: url('{{ a2.image.url }}');">
-				<a href="/article/{{ a2.id }}/">
-					<div>
-						<div class="container">
-							<span style="background-color: {{ a2.category.colour }};" class="category">{{ a2.category.name }}</span>
-							<h1>{{ a2.title }}</h1>
-							<span>{{ a2.date }}</span>
-						</div>
-					</div>
-				</a>
-			</div>
-            	<div class="carousel-cell" style="background-image: url('{{ a3.image.url }}');">
-				<a href="/article/{{ a3.id }}/">
-					<div>
-						<div class="container">
-							<span style="background-color: {{ a3.category.colour }};" class="category">{{ a3.category.name }}</span>
-							<h1>{{ a3.title }}</h1>
-							<span>{{ a3.date }}</span>
-						</div>
-					</div>
-				</a>
-			</div>
-            	<div class="carousel-cell" style="background-image: url('{{ a4.image.url }}');">
-				<a href="/article/{{ a4.id }}/">
-					<div>
-						<div class="container">
-							<span style="background-color: {{ a4.category.colour }};" class="category">{{ a4.category.name }}</span>
-							<h1>{{ a4.title }}</h1>
-							<span>{{ a4.date }}</span>
-						</div>
-					</div>
-				</a>
-			</div>
-            	<div class="carousel-cell" style="background-image: url('{{ a5.image.url }}');">
-				<a href="/article/{{ a5.id }}/">
-					<div>
-						<div class="container">
-							<span style="background-color: {{ a5.category.colour }};" class="category">{{ a5.category.name }}</span>
-							<h1>{{ a5.title }}</h1>
-							<span>{{ a5.date }}</span>
-						</div>
-					</div>
-				</a>
-			</div>
-		</div>
-		<div class="headlines hidden-sm hidden-xs">
-			<a href="/article/{{ a1.id }}/" class="col-sm-6 headline big">
-				<div class="featured-image" style="background-image: url('{{ a1.image.url }}')"></div>
-				<div class="data">
-					<h3>{{ a1.title }}</h3>
-					<span style="padding: 3px 7px; color: white; background-color: {{ a1.category.colour }}; line-height: 1.3;">{{ a1.category.name }}</span>
-				</div>
-			</a>
-			<a href="/article/{{ a2.id }}/" class="col-md-3 col-sm-6 headline small">
-				<div class="featured-image" style="background-image: url('{{ a2.image.url }}')"></div>
-				<div class="data">
-					<h3>{{ a2.title }}</h3>
-					<span style="padding: 3px 7px; color: white; background-color: {{ a2.category.colour }};
-                            line-height: 1.3;">{{ a2.category.name }}</span>
-				</div>
-			</a>
-			<a href="/article/{{ a3.id }}/" class="col-md-3 col-sm-6 headline small">
-				<div class="featured-image" style="background-image: url('{{ a3.image.url }}')"></div>
-				<div class="data">
-					<h3>{{ a3.title }}</h3>
-					<span style="padding: 3px 7px; color: white; background-color: {{ a3.category.colour }};
-					 line-height: 1.3;">{{ a3.category.name }}</span>
-				</div>
-			</a>
-			<a href="/article/{{ a4.id }}/" class="col-md-3 col-sm-6 headline small">
-				<div class="featured-image" style="background-image: url('{{ a4.image.url }}')"></div>
-				<div class="data">
-					<h3>{{ a4.title }} </h3>
-					<span style="padding: 3px 7px; color: white; background-color: {{ a4.category.colour }};
-					line-height: 1.3;">{{ a4.category.name }}</span>
-				</div>
-			</a>
-			<a href="/article/{{ a5.id }}/" class="col-md-3 col-sm-6 headline small">
-				<div class="featured-image" style="background-image: url('{{ a5.image.url }}')"></div>
-				<div class="data">
-					<h3>{{ a5.title }}</h3>
-					<span style="padding: 3px 7px; color: white; background-color: {{ a5.category.colour }};
-					 line-height: 1.3;">{{ a5.category.name }}</span>
-				</div>
-			</a>
-		</div>
-		<div class="container">
-			<section class="category">
-				<h2>АКЫРКЫ МАТЕРИАЛДАР</h2>
-				<div class="articles">
-					<ul class="_articles">
-						<div class="row">
-                            {% for i in last %}
-							<li class="col-md-3 col-sm-4 col-xs-12">
-								<a href="/article/{{ i.id }}/">
-									<article class="card">
-										<div class="featured" style="background-image:
+    <div class="main-carousel hidden-lg hidden-md">
+        <div class="carousel-cell" style="background-image: url('{{ a1.image.url }}');">
+            <a href="/article/{{ a1.id }}/">
+                <div>
+                    <div class="container">
+                        <span style="background-color: {{ a1.category.colour }};"
+                              class="category">{{ a1.category.name }}</span>
+                        <h1>{{ a1.title }}</h1>
+                        <span>{{ a1.date }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="carousel-cell" style="background-image: url('{{ a2.image.url }}');">
+            <a href="/article/{{ a2.id }}/">
+                <div>
+                    <div class="container">
+                        <span style="background-color: {{ a2.category.colour }};"
+                              class="category">{{ a2.category.name }}</span>
+                        <h1>{{ a2.title }}</h1>
+                        <span>{{ a2.date }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="carousel-cell" style="background-image: url('{{ a3.image.url }}');">
+            <a href="/article/{{ a3.id }}/">
+                <div>
+                    <div class="container">
+                        <span style="background-color: {{ a3.category.colour }};"
+                              class="category">{{ a3.category.name }}</span>
+                        <h1>{{ a3.title }}</h1>
+                        <span>{{ a3.date }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="carousel-cell" style="background-image: url('{{ a4.image.url }}');">
+            <a href="/article/{{ a4.id }}/">
+                <div>
+                    <div class="container">
+                        <span style="background-color: {{ a4.category.colour }};"
+                              class="category">{{ a4.category.name }}</span>
+                        <h1>{{ a4.title }}</h1>
+                        <span>{{ a4.date }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="carousel-cell" style="background-image: url('{{ a5.image.url }}');">
+            <a href="/article/{{ a5.id }}/">
+                <div>
+                    <div class="container">
+                        <span style="background-color: {{ a5.category.colour }};"
+                              class="category">{{ a5.category.name }}</span>
+                        <h1>{{ a5.title }}</h1>
+                        <span>{{ a5.date }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="headlines hidden-sm hidden-xs">
+        <a href="/article/{{ a1.id }}/" class="col-sm-6 headline big">
+            <div class="featured-image" style="background-image: url('{{ a1.image.url }}')"></div>
+            <div class="data">
+                <h3>{{ a1.title }}</h3>
+                <span style="padding: 3px 7px; color: white; background-color: {{ a1.category.colour }}; line-height: 1.3;">{{ a1.category.name }}</span>
+            </div>
+        </a>
+        <a href="/article/{{ a2.id }}/" class="col-md-3 col-sm-6 headline small">
+            <div class="featured-image" style="background-image: url('{{ a2.image.url }}')"></div>
+            <div class="data">
+                <h3>{{ a2.title }}</h3>
+                <span style="padding: 3px 7px; color: white; background-color: {{ a2.category.colour }};
+                        line-height: 1.3;">{{ a2.category.name }}</span>
+            </div>
+        </a>
+        <a href="/article/{{ a3.id }}/" class="col-md-3 col-sm-6 headline small">
+            <div class="featured-image" style="background-image: url('{{ a3.image.url }}')"></div>
+            <div class="data">
+                <h3>{{ a3.title }}</h3>
+                <span style="padding: 3px 7px; color: white; background-color: {{ a3.category.colour }};
+                        line-height: 1.3;">{{ a3.category.name }}</span>
+            </div>
+        </a>
+        <a href="/article/{{ a4.id }}/" class="col-md-3 col-sm-6 headline small">
+            <div class="featured-image" style="background-image: url('{{ a4.image.url }}')"></div>
+            <div class="data">
+                <h3>{{ a4.title }} </h3>
+                <span style="padding: 3px 7px; color: white; background-color: {{ a4.category.colour }};
+                        line-height: 1.3;">{{ a4.category.name }}</span>
+            </div>
+        </a>
+        <a href="/article/{{ a5.id }}/" class="col-md-3 col-sm-6 headline small">
+            <div class="featured-image" style="background-image: url('{{ a5.image.url }}')"></div>
+            <div class="data">
+                <h3>{{ a5.title }}</h3>
+                <span style="padding: 3px 7px; color: white; background-color: {{ a5.category.colour }};
+                        line-height: 1.3;">{{ a5.category.name }}</span>
+            </div>
+        </a>
+    </div>
+    <div class="container">
+        <section class="category">
+            <h2>АКЫРКЫ МАТЕРИАЛДАР</h2>
+            <div class="articles">
+                <ul class="_articles">
+                    <div class="row">
+                        {% for i in last %}
+                            <li class="col-md-3 col-sm-4 col-xs-12">
+                                <a href="/article/{{ i.id }}/">
+                                    <article class="card">
+                                        <div class="featured" style="background-image:
                                                 url('{{ i.image.url }}')"></div>
-										<div class="inner">
-											<div class="info">
-												<span class="author">{{ i.author.family.username }}</span>
-												<br>
-												<span class="type" style="color: {{ i.category.colour }}">{{ i.tag.name }}</span>
-                                                &#8226; <time pubdate="">{{ i.date }}</time>
-											</div>
-											<h3>{{ i.title }}</h3>
-										</div>
-									</article>
-								</a>
-							</li>
-                            {% endfor %}
-						</div>
-					</ul>
-				</div>
-			</section>
+                                        <div class="inner">
+                                            <div class="info">
+                                                <span class="author">{{ i.author.family.username }}</span>
+                                                <br>
+                                                <span class="type"
+                                                      style="color: {{ i.category.colour }}">{{ i.tag.name }}</span>
+                                                &#8226;
+                                                <time pubdate="">{{ i.date }}</time>
+                                            </div>
+                                            <h3>{{ i.title }}</h3>
+                                        </div>
+                                    </article>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </div>
+                </ul>
+            </div>
+        </section>
         {% for i in categories %}
-			<section class="category">
-			<h2 style="color: {{ i.colour }}; border-color: {{ i.colour }}">{{ i.name }}</h2>
-				<div class="articles">
-					<ul class="_articles">
-						<div class="row">
+            <section class="category">
+                <h2 style="color: {{ i.colour }}; border-color: {{ i.colour }}">{{ i.name }}</h2>
+                <div class="articles">
+                    <ul class="_articles">
+                        <div class="row">
                             {% for j in i.get_articles %}
-							<li class="col-md-3 col-sm-4 col-xs-12">
-								<a href="/article/{{ j.id }}/">
-									<article class="card">
-										<div class="featured" style="background-image:
-                                                url('{{ j.image.url }}')"></div>
-										<div class="inner">
-											<div class="info">
-												<span class="author">{{ j.author.family.username }}</span>
-												<br>
-												<span class="type" style="color: {{ j.category.colour }}">
+                                <li class="col-md-3 col-sm-4 col-xs-12">
+                                    <a href="/article/{{ j.id }}/">
+                                        <article class="card">
+                                            <div class="featured" style="background-image:
+                                                    url('{{ j.image.url }}')"></div>
+                                            <div class="inner">
+                                                <div class="info">
+                                                    <span class="author">{{ j.author.family.username }}</span>
+                                                    <br>
+                                                    <span class="type" style="color: {{ j.category.colour }}">
                                                     {{ j.tag.name }}</span>
-                                                &#8226; <time pubdate="">{{ j.date }}</time>
-											</div>
-											<h3>{{ j.title }}</h3>
-										</div>
-									</article>
-								</a>
-							</li>
-                                {% endfor %}
-						</div>
-					</ul>
-				</div>
-		</section>
+                                                    &#8226;
+                                                    <time pubdate="">{{ j.date }}</time>
+                                                </div>
+                                                <h3>{{ j.title }}</h3>
+                                            </div>
+                                        </article>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </div>
+                    </ul>
+                </div>
+            </section>
         {% endfor %}
-	</div>
+    </div>
 {% endblock %}
 {% block script %}
     <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
-<script src="{% static 'js/jquery.matchHeight-min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/zema-nav.js' %}"></script>
-<script src="{% static 'js/social-share-kit.min.js' %}"></script>
-<script src="{% static 'js/prefixfree.min.js' %}"></script>
-<script src="https://npmcdn.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
-<script type="text/javascript">
-$('.card').matchHeight();
-$(document).ready(function(){
-	$('.main-carousel').flickity({
-		// options
-		cellAlign: 'left',
-		contain: true,
-		autoPlay: true,
-		wrapAround: true,
-		pageDots: true,
-		prevNextButtons: false
-	});
-});
-</script>
+    <script src="{% static 'js/jquery.matchHeight-min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/zema-nav.js' %}"></script>
+    <script src="{% static 'js/social-share-kit.min.js' %}"></script>
+    <script src="{% static 'js/prefixfree.min.js' %}"></script>
+    <script src="https://npmcdn.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
+    <script>
+        var dollar = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var euro = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22EURKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var rub = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22RUBKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var tenge = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22KZTKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+
+        $.getJSON(dollar, function (s) {
+            $('#dollarrate').append(s.query.results.rate.Rate)
+            $('#dollarrate2').append(s.query.results.rate.Rate)
+        })
+        $.getJSON(euro, function (s) {
+            $('#eurorate').append(s.query.results.rate.Rate)
+            $('#eurorate2').append(s.query.results.rate.Rate)
+
+
+        })
+        $.getJSON(rub, function (s) {
+            $('#rubrate').append(s.query.results.rate.Rate)
+            $('#rubrate2').append(s.query.results.rate.Rate)
+        })
+        $.getJSON(tenge, function (s) {
+            $('#tengerate').append(s.query.results.rate.Rate)
+            $('#tengerate2').append(s.query.results.rate.Rate)
+        })
+    </script>
+    <script type="text/javascript">
+        $('.card').matchHeight();
+        $(document).ready(function () {
+            $('.main-carousel').flickity({
+                // options
+                cellAlign: 'left',
+                contain: true,
+                autoPlay: true,
+                wrapAround: true,
+                pageDots: true,
+                prevNextButtons: false
+            });
+        });
+    </script>
 {% endblock %}
