@@ -16,106 +16,134 @@
 {% block category_string %} &mdash; {{ category_name }}{% endblock %}
 {% block category_string2 %} &mdash; {{ category_name }}{% endblock %}
 {% block static %}
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700i|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-	<link rel="stylesheet" href="https://npmcdn.com/flickity@2.0/dist/flickity.min.css">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/social-share-kit.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700i|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://npmcdn.com/flickity@2.0/dist/flickity.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/social-share-kit.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 {% endblock %}
 {% block content %}
-		<div class="main-carousel hidden-lg hidden-md">
+    <div class="main-carousel hidden-lg hidden-md">
         {% for i in current %}
-			<div class="carousel-cell" style="background-image: url('{{ i.image.url }}');">
-				<a href="/article/{{ i.id }}/">
-					<div>
-						<div class="container">
+            <div class="carousel-cell" style="background-image: url('{{ i.image.url }}');">
+                <a href="/article/{{ i.id }}/">
+                    <div>
+                        <div class="container">
 							<span style="background-color: {{ i.category.colour }};"
                                   class="category">{{ i.category.name }}</span>
-							<h1>{{ i.title }}</h1>
-							<h4>{{ i.date }}</h4>
-						</div>
-					</div>
-				</a>
-			</div>
+                            <h1>{{ i.title }}</h1>
+                            <h4>{{ i.date }}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
         {% endfor %}
-		</div>
-		<div class="headlines hidden-sm hidden-xs incat">
+    </div>
+    <div class="headlines hidden-sm hidden-xs incat">
         {% for i in current %}
-			<a href="/article/{{ i.id }}/" class="col-md-3 col-sm-6 headline">
-				<div class="featured-image" style="background-image: url('{{ i.image.url }}')"></div>
-				<div class="data">
-					<h3>{{ i.title }}</h3>
-					<span style="padding: 3px 7px; color: white; background-color: {{ i.category.colour }};
-					 line-height: 1.3;">{{ i.category.name }}</span>
-				</div>
-			</a>
-        {% endfor %}
-		</div>
-		<div class="container">
-			<section class="category">
-				<div class="articles">
-					<ul class="_articles">
-						<div class="row">
-                            {% for i in all %}
-							<li class="col-md-3 col-sm-4 col-xs-12">
-								<a href="/article/{{ i.id }}/">
-									<article class="card">
-										<div class="featured" style="background-image:
-                                                url('{{ i.image.url }}')"></div>
-										<div class="inner">
-											<div class="info">
-												<span class="author">{{ i.author.family.username }}</span>
-												<br>
-												<span class="type" style="color: {{ i.category.colour }}">{{ i.tag.name }}</span>
-                                                &#8226; <time pubdate="">{{ i.date }}</time>
-											</div>
-											<h3>{{ i.title }}</h3>
-										</div>
-									</article>
-								</a>
-							</li>
-                            {% endfor %}
-						</div>
-					</ul>
-				</div>
-			</section>
-	</div>
-    <div class="text-center col-md-12">
-                    {% if previous == 0 %}
-                        <a class="hidden" href="/category/{{ category_name.id }}/{{ previous }}/">Чейинки</a>
-                    {% else %}
-                        <a href="/category/{{ category_name.id }}/{{ previous }}/">Чейинки</a>
-                    {% endif %}
-                    {% if a == next %}
-                        <a class="hidden" href="/category/{{ category_name.id }}/{{ next }}/">Кийинки</a>
-                    {% else %}
-                        <a href="/category/{{ category_name.id }}/{{ next }}/">Кийинки</a>
-                    {% endif %}
+            <a href="/article/{{ i.id }}/" class="col-md-3 col-sm-6 headline">
+                <div class="featured-image" style="background-image: url('{{ i.image.url }}')"></div>
+                <div class="data">
+                    <h3>{{ i.title }}</h3>
+                    <span style="padding: 3px 7px; color: white; background-color: {{ i.category.colour }};
+                            line-height: 1.3;">{{ i.category.name }}</span>
                 </div>
+            </a>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <section class="category">
+            <div class="articles">
+                <ul class="_articles">
+                    <div class="row">
+                        {% for i in all %}
+                            <li class="col-md-3 col-sm-4 col-xs-12">
+                                <a href="/article/{{ i.id }}/">
+                                    <article class="card">
+                                        <div class="featured" style="background-image:
+                                                url('{{ i.image.url }}')"></div>
+                                        <div class="inner">
+                                            <div class="info">
+                                                <span class="author">{{ i.author.family.username }}</span>
+                                                <br>
+                                                <span class="type"
+                                                      style="color: {{ i.category.colour }}">{{ i.tag.name }}</span>
+                                                &#8226;
+                                                <time pubdate="">{{ i.date }}</time>
+                                            </div>
+                                            <h3>{{ i.title }}</h3>
+                                        </div>
+                                    </article>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </div>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <div class="text-center col-md-12">
+        {% if previous == 0 %}
+            <a class="hidden" href="/category/{{ category_name.id }}/{{ previous }}/">Чейинки</a>
+        {% else %}
+            <a href="/category/{{ category_name.id }}/{{ previous }}/">Чейинки</a>
+        {% endif %}
+        {% if a == next %}
+            <a class="hidden" href="/category/{{ category_name.id }}/{{ next }}/">Кийинки</a>
+        {% else %}
+            <a href="/category/{{ category_name.id }}/{{ next }}/">Кийинки</a>
+        {% endif %}
+    </div>
 {% endblock %}
 {% block script %}
     <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
-<script src="{% static 'js/jquery.matchHeight-min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/zema-nav.js' %}"></script>
-<script src="{% static 'js/social-share-kit.min.js' %}"></script>
-<script src="{% static 'js/prefixfree.min.js' %}"></script>
-<script src="https://npmcdn.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
-<script type="text/javascript">
-$('.card').matchHeight();
-$(document).ready(function(){
-	$('.main-carousel').flickity({
-		// options
-		cellAlign: 'left',
-		contain: true,
-		autoPlay: true,
-		wrapAround: true,
-		pageDots: true,
-		prevNextButtons: false
-	});
-});
-</script>
+    <script src="{% static 'js/jquery.matchHeight-min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/zema-nav.js' %}"></script>
+    <script src="{% static 'js/social-share-kit.min.js' %}"></script>
+    <script src="{% static 'js/prefixfree.min.js' %}"></script>
+    <script src="https://npmcdn.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
+    <script>
+        var dollar = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var euro = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22EURKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var rub = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22RUBKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var tenge = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22KZTKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+
+        $.getJSON(dollar, function (s) {
+            $('#dollarrate').append(s.query.results.rate.Rate)
+            $('#dollarrate2').append(s.query.results.rate.Rate)
+        })
+        $.getJSON(euro, function (s) {
+            $('#eurorate').append(s.query.results.rate.Rate)
+            $('#eurorate2').append(s.query.results.rate.Rate)
+
+
+        })
+        $.getJSON(rub, function (s) {
+            $('#rubrate').append(s.query.results.rate.Rate)
+            $('#rubrate2').append(s.query.results.rate.Rate)
+        })
+        $.getJSON(tenge, function (s) {
+            $('#tengerate').append(s.query.results.rate.Rate)
+            $('#tengerate2').append(s.query.results.rate.Rate)
+        })
+    </script>
+    <script type="text/javascript">
+        $('.card').matchHeight();
+        $(document).ready(function () {
+            $('.main-carousel').flickity({
+                // options
+                cellAlign: 'left',
+                contain: true,
+                autoPlay: true,
+                wrapAround: true,
+                pageDots: true,
+                prevNextButtons: false
+            });
+        });
+    </script>
 {% endblock %}

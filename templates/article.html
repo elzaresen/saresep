@@ -13,152 +13,187 @@
 {% block image_twitter %}{{ article.image.url }}{% endblock %}
 {% block author_twitter %}{{ article.author }}{% endblock %}
 {% block static %}
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700i|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/social-share-kit.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700i|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/social-share-kit.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/article.css' %}">
 {% endblock %}
 {% block content %}
     <article>
-			<header style="background-image: url('{{ article.image.url }}')">
-				<div class="container hidden-xs">
+        <header style="background-image: url('{{ article.image.url }}')">
+            <div class="container hidden-xs">
 					<span class="category" style="background-color: {{ article.category.colour }};">
                         {{ article.category.name }}
                     </span>
-					<h1>{{ article.title }}</h1>
-					<datetime>{{ article.date }}</datetime>
-				</div>
-			</header>
-		</article>
-		<div class="container card-1">
-			<article>
-				<div class="col-md-8">
-					<div class="content">
-						<div class="visible-xs">
+                <h1>{{ article.title }}</h1>
+                <datetime>{{ article.date }}</datetime>
+            </div>
+        </header>
+    </article>
+    <div class="container card-1">
+        <article>
+            <div class="col-md-8">
+                <div class="content">
+                    <div class="visible-xs">
 							<span class="category" style="background-color: {{ article.category.colour }};">
                                 {{ article.category.name }}</span>
-							<h1>{{ article.title }}</h1>
-							<datetime>{{ article.date }}</datetime>
-						</div>
-						<img alt="Erdogan" src="{{ article.image.url }}" class="hidden">
-                        {{ article.body|safe }}
-					</div>
-					<div class="this-article-author">
-						<div class="row">
-							<div class="col-xs-12">
-								<img src="{{ article.author.avatar.url }}" height="75" class="img-circle">
-								<div class="information" style="">
-									<h4 class="name"><b>{{ article.author.family.username }}</b></h4>
-									<p class="description">
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="share">
-						<div class="row">
-							<h4 class="col-sm-6 col-xs-12">Поделитесь этой статьёй</h4>
-							<div class="col-sm-6 col-xs-12 ssk-group" data-url="http://saresep.kg/article/{{ article.id }}/">
-								<a href="" class="ssk ssk-facebook" data-image="image.jpg"></a>
-								<a href="" class="ssk ssk-twitter"></a>
-								<a href="" class="ssk ssk-google-plus"></a>
-								<a href="" class="ssk ssk-vk"></a>
-							</div>
-						</div>
-					</div>
-					<div class="comments">
-						<div id="disqus_thread"></div>
-						<script>
-							var disqus_config = function () {
-								this.page.url = 'http://saresep.kg/article/556/';
-								this.page.identifier = 556;
-							};
-							(function() {
-								var d = document, s = d.createElement('script');
+                        <h1>{{ article.title }}</h1>
+                        <datetime>{{ article.date }}</datetime>
+                    </div>
+                    <img alt="Erdogan" src="{{ article.image.url }}" class="hidden">
+                    {{ article.body|safe }}
+                </div>
+                <div class="this-article-author">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <img src="{{ article.author.avatar.url }}" height="75" class="img-circle">
+                            <div class="information" style="">
+                                <h4 class="name"><b>{{ article.author.family.username }}</b></h4>
+                                <p class="description">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="share">
+                    <div class="row">
+                        <h4 class="col-sm-6 col-xs-12">Поделитесь этой статьёй</h4>
+                        <div class="col-sm-6 col-xs-12 ssk-group"
+                             data-url="http://saresep.kg/article/{{ article.id }}/">
+                            <a href="" class="ssk ssk-facebook" data-image="image.jpg"></a>
+                            <a href="" class="ssk ssk-twitter"></a>
+                            <a href="" class="ssk ssk-google-plus"></a>
+                            <a href="" class="ssk ssk-vk"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_config = function () {
+                            this.page.url = 'http://saresep.kg/article/556/';
+                            this.page.identifier = 556;
+                        };
+                        (function () {
+                            var d = document, s = d.createElement('script');
 
-								s.src = 'https://saresep.disqus.com/embed.js';
+                            s.src = 'https://saresep.disqus.com/embed.js';
 
-								s.setAttribute('data-timestamp', +new Date());
-								(d.head || d.body).appendChild(s);
-							})();
-						</script>
-						<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-					</div>
-					<div class="other-articles">
-						<div class="widget">
-							<h4 class="widget-title">БАШКА МАКАЛДАР</h4>
-							<div class="articles">
-								<ul class="_articles">
-									<div class="row">
-                                        {% for i in by_category %}
-										<li class="col-md-6 col-sm-6 col-xs-12">
-											<a href="/article/{{ i.id }}/">
-												<article class="card">
-													<div class="featured" style="background-image: url('{{ i.image.url }}')"></div>
-													<div class="inner">
-														<div class="info">
-															<span class="author">{{ i.author.family.username }}</span>
-															<br>
-															<span class="type">{{ i.tag.name }}</span> &#8226; <time pubdate="">{{ i.date }}</time>
-														</div>
-													<h3>{{ i.title }}</h3>
-													</div>
-												</article>
-											</a>
-										</li>
-                                        {% endfor %}
-									</div>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</article>
-			<div class="col-md-4">
-				<div class="widget">
-					<h4 class="widget-title">БАШКА МАКАЛДАР</h4>
-					<div class="other-articles">
-						<div class="articles">
-							<ul class="_articles">
-								<div class="row">
-                                    {% for i in articles %}
-									<li class="col-xs-12">
-										<a href="/article/{{ i.id }}/">
-												<article class="card">
-													<div class="featured" style="background-image: url('{{ i.image.url }}')"></div>
-													<div class="inner">
-														<div class="info">
-															<span class="author">{{ i.author.family.username }}</span>
-															<br>
-															<span class="type">{{ i.tag.name }}</span> &#8226; <time pubdate="">{{ i.date }}</time>
-														</div>
-													<h3>{{ i.title }}</h3>
-													</div>
-												</article>
-											</a>
-									</li>
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+                                                                      rel="nofollow">comments powered by Disqus.</a>
+                    </noscript>
+                </div>
+                <div class="other-articles">
+                    <div class="widget">
+                        <h4 class="widget-title">БАШКА МАКАЛДАР</h4>
+                        <div class="articles">
+                            <ul class="_articles">
+                                <div class="row">
+                                    {% for i in by_category %}
+                                        <li class="col-md-6 col-sm-6 col-xs-12">
+                                            <a href="/article/{{ i.id }}/">
+                                                <article class="card">
+                                                    <div class="featured"
+                                                         style="background-image: url('{{ i.image.url }}')"></div>
+                                                    <div class="inner">
+                                                        <div class="info">
+                                                            <span class="author">{{ i.author.family.username }}</span>
+                                                            <br>
+                                                            <span class="type">{{ i.tag.name }}</span> &#8226;
+                                                            <time pubdate="">{{ i.date }}</time>
+                                                        </div>
+                                                        <h3>{{ i.title }}</h3>
+                                                    </div>
+                                                </article>
+                                            </a>
+                                        </li>
                                     {% endfor %}
-								</div>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="ad col-md-12 col-sm-6 col-xs-12">
-					<img alt="add" src="http://data.zanoza.kg/banner/2016-07-15_14-30-09_100166.jpg" class="img-responsive center-block">
-				</div>
-				<div class="ad col-md-12 col-sm-6 col-xs-12">
-					<img alt="add" src="http://data.zanoza.kg/banner/2016-07-11_15-13-16_711740.gif" class="img-responsive center-block">
-				</div>
-			</div>
-		</div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <div class="col-md-4">
+            <div class="widget">
+                <h4 class="widget-title">БАШКА МАКАЛДАР</h4>
+                <div class="other-articles">
+                    <div class="articles">
+                        <ul class="_articles">
+                            <div class="row">
+                                {% for i in articles %}
+                                    <li class="col-xs-12">
+                                        <a href="/article/{{ i.id }}/">
+                                            <article class="card">
+                                                <div class="featured"
+                                                     style="background-image: url('{{ i.image.url }}')"></div>
+                                                <div class="inner">
+                                                    <div class="info">
+                                                        <span class="author">{{ i.author.family.username }}</span>
+                                                        <br>
+                                                        <span class="type">{{ i.tag.name }}</span> &#8226;
+                                                        <time pubdate="">{{ i.date }}</time>
+                                                    </div>
+                                                    <h3>{{ i.title }}</h3>
+                                                </div>
+                                            </article>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="ad col-md-12 col-sm-6 col-xs-12">
+                <img alt="add" src="http://data.zanoza.kg/banner/2016-07-15_14-30-09_100166.jpg"
+                     class="img-responsive center-block">
+            </div>
+            <div class="ad col-md-12 col-sm-6 col-xs-12">
+                <img alt="add" src="http://data.zanoza.kg/banner/2016-07-11_15-13-16_711740.gif"
+                     class="img-responsive center-block">
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
 {% block script %}
     <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/zema-nav.js' %}"></script>
-<script src="{% static 'js/social-share-kit.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/zema-nav.js' %}"></script>
+    <script src="{% static 'js/social-share-kit.min.js' %}"></script>
+    <script>
+        var dollar = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var euro = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22EURKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var rub = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22RUBKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+        var tenge = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22KZTKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
+
+        $.getJSON(dollar, function (s) {
+            $('#dollarrate').append(s.query.results.rate.Rate)
+            $('#dollarrate2').append(s.query.results.rate.Rate)
+        })
+        $.getJSON(euro, function (s) {
+            $('#eurorate').append(s.query.results.rate.Rate)
+            $('#eurorate2').append(s.query.results.rate.Rate)
+
+
+        })
+        $.getJSON(rub, function (s) {
+            $('#rubrate').append(s.query.results.rate.Rate)
+            $('#rubrate2').append(s.query.results.rate.Rate)
+        })
+        $.getJSON(tenge, function (s) {
+            $('#tengerate').append(s.query.results.rate.Rate)
+            $('#tengerate2').append(s.query.results.rate.Rate)
+        })
+    </script>
 {% endblock %}
