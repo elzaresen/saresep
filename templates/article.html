@@ -3,7 +3,7 @@
 {% block title %}{{ article.title }} - Саресеп{% endblock %}
 {% block description %}{{ article.body|striptags|slice:":160" }}{% endblock %}
 {% block keywords %}{{ article.keys }}{% endblock %}
-{% block author %}{{ article.author }}{% endblock %}
+{% block author %}{{ article.author.family.get_full_name }}{% endblock %}
 {% block title_og %}{{ article.title }}{% endblock %}
 {% block description_og %}{{ article.body|striptags|slice:":160" }}{% endblock %}
 {% block image_og %}{{ article.image.url }}{% endblock %}
@@ -11,7 +11,7 @@
 {% block title_twitter %}{{ article.title }}{% endblock %}
 {% block description_twitter %}{{ article.body|striptags|slice:":160" }}{% endblock %}
 {% block image_twitter %}{{ article.image.url }}{% endblock %}
-{% block author_twitter %}{{ article.author }}{% endblock %}
+{% block author_twitter %}{{ article.author.family.get_full_name }}{% endblock %}
 {% block static %}
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700i|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext"
           rel="stylesheet">
@@ -138,7 +138,7 @@
                                                      style="background-image: url('{{ i.image.url }}')"></div>
                                                 <div class="inner">
                                                     <div class="info">
-                                                        <span class="author">{{ i.author.family.username }}</span>
+                                                        <span class="author">{{ i.author.family.get_full_name }}</span>
                                                         <br>
                                                         <span class="type">{{ i.tag.name }}</span> &#8226;
                                                         <time pubdate="">{{ i.date }}</time>
