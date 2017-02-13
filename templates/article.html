@@ -76,7 +76,7 @@
                     <script>
                         var disqus_config = function () {
                             this.page.url = 'http://saresep.kg/article/556/';
-                            this.page.identifier = 556;
+                            this.page.identifier = {{ article.id }};
                         };
                         (function () {
                             var d = document, s = d.createElement('script');
@@ -172,6 +172,7 @@
     <script src="{% static 'js/zema-nav.js' %}"></script>
     <script src="{% static 'js/social-share-kit.min.js' %}"></script>
     <script>
+        SocialShareKit.init();
         var dollar = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
         var euro = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22EURKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
         var rub = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22RUBKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
