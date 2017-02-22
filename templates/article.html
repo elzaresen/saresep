@@ -44,7 +44,7 @@
                         <h1>{{ article.title }}</h1>
                         <datetime>{{ article.date }}</datetime>
                     </div>
-                    <img alt="Erdogan" src="{{ article.image.url }}" class="hidden">
+                    <img alt="{{ article.title }}" src="{{ article.image.url }}" class="hidden">
                     {{ article.body|safe }}
                 </div>
                 <div class="this-article-author">
@@ -154,14 +154,6 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-            <div class="ad col-md-12 col-sm-6 col-xs-12">
-                <img alt="add" src="http://data.zanoza.kg/banner/2016-07-15_14-30-09_100166.jpg"
-                     class="img-responsive center-block">
-            </div>
-            <div class="ad col-md-12 col-sm-6 col-xs-12">
-                <img alt="add" src="http://data.zanoza.kg/banner/2016-07-11_15-13-16_711740.gif"
-                     class="img-responsive center-block">
             </div>
         </div>
     </div>
