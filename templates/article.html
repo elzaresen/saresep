@@ -190,4 +190,38 @@
             $('#tengerate2').append(s.query.results.rate.Rate)
         })
     </script>
+    <script>
+        function startTime() {
+            var monthNames = [
+                "үчтүн айы", "бирдин айы", "жалган куран айы",
+                "чын куран айы", "бугу айы", "кулжа айы", "теке айы",
+                "баш оона айы,", "аяк оона айы", "тогуздун айы",
+                "жетинин айы", "бештин айы"
+            ];
+            var dayNames = [
+                "Дуйшенбү", "Шейшемби", "Шаршемби",
+                "Бейшемби", "Жума", "Ишемби", "Жекшемби"
+            ];
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            var day = today.getDate();
+            var weekday = today.getDay();
+            var monthIndex = today.getMonth();
+            var year = today.getFullYear();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML = dayNames[weekday] + ', ' + day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + h + ":" + m + ":" + s
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i
+            }
+            ;  // add zero in front of numbers < 10
+            return i;
+        }
+        startTime();
+    </script>
 {% endblock %}
