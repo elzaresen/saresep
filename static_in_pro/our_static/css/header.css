@@ -288,7 +288,7 @@ html{
 .daily-info .today{
 	margin: 0;
 	padding: 10px 0;
-	text-transform: lowercase ;
+	text-transform: lowercase;
 	font-weight: 500;
 	font-family: 'PT Sans', sans-serif;
 }
