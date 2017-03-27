@@ -18,8 +18,8 @@ def article(request, article_id):
     threshold = datetime.now() - timedelta(days=14)
     args = {
         "categories_nav": Category.objects.order_by('slug', 'name')[0:7],
-        "categories": Category.objects.all()[0:8],
-        "categories1": Category.objects.all()[8:16],
+        "categories1": Category.objects.all()[0:8],
+        "categories2": Category.objects.all()[8:16],
         'article': x,
         'by_category': Article.objects.filter(category_id=x.category_id,
                                               published=True,
