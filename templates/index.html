@@ -7,164 +7,188 @@
     <meta name="audience" content="all"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% block description %}{% endblock %}">
-    <meta name="author" content="{% block author %}{% endblock %}">
-    <meta name="keywords" content="{% block keywords %}{% endblock %}">
-    <meta property="og:url" content="{{ request.get_host }}{% block url_og %}{% endblock %}"/>
-    <meta property="og:site_name" content="Саресеп"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:title" content="{% block title_og %}{% endblock %}"/>
-    <meta property="og:description" content="{% block description_og %}{% endblock %}"/>
-    <meta property="og:image" content="{{ request.get_host }}{% block image_og %}{% endblock %}"/>
-    <meta property="fb:app_id" content="231507357184200"/>
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@saresep1">
-    <meta name="twitter:creator" content="{% block author_twitter %}{% endblock %}">
-    <meta name="twitter:title" content="{% block title_twitter %}{% endblock %}">
-    <meta name="twitter:description" content="{% block description_twitter %}{% endblock %}">
-    <meta name="twitter:image" content="{{ request.get_host }}{% block image_twitter %}{% endblock %}">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="theme-color" content="#ffffff">
+
     {% load staticfiles %}
-    <meta name="msapplication-TileImage" content="{% static 'favicon/ms-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'favicon/apple-icon-57x57.png' %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'favicon/apple-icon-60x60.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'favicon/apple-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'favicon/apple-icon-76x76.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'favicon/apple-icon-114x114.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'favicon/apple-icon-120x120.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicon/apple-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicon/apple-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-icon-180x180.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'favicon/android-icon-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'favicon/favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'favicon/manifest.json' %}">
-    {% block static %}{% endblock %}
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|Merriweather:400,400i,700,700i&amp;subset=cyrillic-ext"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/flickity.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/modal-video.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/article.css' %}">
 </head>
 <body>
-<header class="header">
-    <div class="container-fluid">
-        <div class="row">
-            <div style="float:left">
-                <button class="hamburger hamburger--slider zema-nav-trigger hidden-md hidden-lg" onclick="zemanav()"
-                        tabindex="0" aria-label="Menu" role="button" aria-controls="navigation">
-                    <div class="hamburger-box">
-                        <div class="hamburger-inner"></div>
-                    </div>
-                </button>
-                <span class="logo" style="margin-top: 10px">
-						<a href="/">
-                            <img height="50" src="{% static 'sareseplogoupdate.png' %}" alt="">
-                        </a>
-					</span>
-            </div>
-            <div class="hidden-sm hidden-xs daily-info text-right">
-                <h5 class="today" id="txt">
 
-                </h5>
-                <div class="currencies">
-                    <h5><span>USD</span>
-                        <span id="dollarrate2"></span></h5>
-                    <h5><span>EUR</span>
-                        <span id="eurorate2"></span></h5>
-                    <h5><span>RUB</span>
-                        <span id="rubrate2"></span></h5>
-                    <h5><span>KZT</span>
-                        <span id="tengerate2"></span></h5>
-                </div>
-            </div>
+<header class="container sticky-top navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">
+        <img src="{% static 'assets/img/logo.svg' %}" height="30" alt="">
+    </a>
+    <button class="hamburger hamburger--slider zema-nav-trigger" onclick="zemanav()"
+            tabindex="0" aria-label="Menu" role="button" aria-controls="navigation">
+        <div class="hamburger-box">
+            <div class="hamburger-inner"></div>
         </div>
-    </div>
-    <div class="container-fluid zema-nav-desktop">
-        <nav class="hidden-sm hidden-xs">
-            <div class="zema-nav-content">
-                <ul>
-                    {% for i in categories_nav %}
-                        {% if i.name == active %}
-                            <li class="active"><a href="/category/{{ i.id }}/1/">{{ i.name }}</a></li>
-                        {% else %}
-                            <li><a href="/category/{{ i.id }}/1/">{{ i.name }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-        </nav>
-    </div>
+    </button>
     <nav class="zema-nav">
         <div class="zema-nav-content">
             <ul>
                 {% for i in categories_nav %}
-                    <li><a href="/category/{{ i.id }}/1/">{{ i.name }}</a></li>
+                    {% if i.name == active %}
+                        <li class="active"><a href="/category/{{ i.id }}/1/">{{ i.name }}</a></li>
+                    {% else %}
+                        <li><a href="/category/{{ i.id }}/1/">{{ i.name }}</a></li>
+                    {% endif %}
                 {% endfor %}
             </ul>
-            <div class="currencies-in-navbar">
-                <div class="col-xs-6"><span>USD</span>
-                    <span id="dollarrate"></span></div>
-                <div class="col-xs-6"><span>EUR</span>
-                    <span id="eurorate"></span></div>
-                <div class="col-xs-6"><span>RUB</span>
-                    <span id="rubrate"></span></div>
-                <div class="col-xs-6"><span>KZT</span>
-                    <span id="tengerate"></span></div>
-            </div>
         </div>
     </nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            {% for i in categories_nav %}
+                {% if i.name == active %}
+                    <li class="active nav-item"><a class="nav-link" href="/category/{{ i.id }}/1/">{{ i.name }}</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="/category/{{ i.id }}/1/">{{ i.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
 </header>
-<main>
+<main class="container">
     {% block content %}{% endblock %}
 </main>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img height="50" src="{% static 'sareseplogoupdate.png' %}" alt="">
-                        <div class="about-us">
-                            Саресеп - экономикалык аналитика гезити 2015-жылдан бери чыгат
-                        </div>
-                        <div class="ssk-group">
-                            <a href="https://www.facebook.com/saresep" class="ssk ssk-facebook ssk-sm"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-{#                <span class="footer-header">САРЕСЕП</span>#}
-                <ul class="footer-menu">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            {% for i in categories2 %}
-                                <li><a href="/category/{{ i.id }}/1/">{{ i.name }}</a></li>
-                            {% endfor %}
-                        </div>
-                        <div class="col-xs-6">
-                            {% for i in categories1 %}
-                                <li><a href="/category/{{ i.id }}/1/">{{ i.name }}</a></li>
-                            {% endfor %}                            </div>
-                    </div>
-                </ul>
-            </div>
+
+<footer class="container">
+    <div class="row up">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 text-center text-md-left">
+            <p>
+                Байтик Баатыр &mdash; Горький к. <br>
+                Вефа Центр, Б &mdash; блок <br>
+                5 &mdash; кабат, 102 <br>
+            </p>
+            <p>
+                info@saresep.kg
+            </p>
+            <p>
+                www.saresep.kg
+            </p>
+            <p>
+                +996 555 204 571
+            </p>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 text-center text-md-right">
         </div>
     </div>
-    <hr>
-    <div class="container">
-        <div class="col-xs-6">
-{#            <ul class="second-footer-menu">#}
-{#                <div class="row">#}
-{#                    <li><a href="#">О нас</a></li>#}
-{#                    <li><a href="#">Контакты</a></li>#}
-{#                </div>#}
-{#            </ul>#}
-        </div>
-        <div class="col-sm-6 text-right">
-            <span class="copyright">&copy; saresep 2015 - 2017</span>
+    <div class="row down">
+        <div class="col-12">
+            <p class="text-center">Саресеп &copy; 2017 &mdash; <img height="30px" src="{% static 'pixelkalpaktransparent.png' %}" alt=""> Pixel Kalpak</p>
         </div>
     </div>
 </footer>
-{% block script %}
-{% endblock %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+<script src="{% static 'assets/js/vendor/flickity.js' %}"></script>
+<script src="{% static 'assets/js/vendor/jquery-modal-video.js' %}"></script>
+<script src="{% static 'assets/js/vendor/social-share-kit.min.js' %}"></script>
+<script>
+    SocialShareKit.init({forceInit: true});
+
+    function zemanav() {
+        if (!$('.zema-nav').hasClass('active')) {
+            $('.zema-nav').addClass('active');
+            $('.zema-nav-trigger').addClass('is-active');
+        }
+        else {
+            $('.zema-nav').removeClass('active');
+            $('.zema-nav-trigger').removeClass('is-active')
+        }
+    }
+
+    $('.ads-carousel').flickity({
+        // options
+        lazyLoad: 2,
+        initialIndex: 2,
+        autoPlay: true,
+        infiniteScroll: true,
+        wrapAround: true,
+        pageDots: false
+
+    });
+
+    var $carousel = $('.carousel').flickity({
+        // options
+        autoPlay: true,
+        cellAlign: 'left',
+        contain: true,
+        setGallerySize: false,
+        pageDots: false,
+        prevNextButtons: false,
+        wrapAround: true
+    });
+
+    var flkty = $carousel.data('flickity');
+    var $cellButtonGroup = $('.button-group--cells');
+    var $cellButtons = $cellButtonGroup.find('.button');
+    $carousel.on('select.flickity', function () {
+        $cellButtons.filter('.active')
+            .removeClass('active');
+        $cellButtons.eq(flkty.selectedIndex)
+            .addClass('active');
+    });
+    $cellButtonGroup.on('click', '.button', function () {
+        var index = $(this).index();
+        $carousel.flickity('select', index);
+    });
+
+
+     var Youtube = (function () {
+        'use strict';
+
+        var video, results;
+
+        var getThumb = function (url, size) {
+            if (url === null) {
+                return '';
+            }
+            size    = (size === null) ? 'big' : size;
+            results = url.match('[\\?&]v=([^&#]*)');
+            video   = (results === null) ? url : results[1];
+
+            if (size === 'small') {
+                return 'http://img.youtube.com/vi/' + video + '/2.jpg';
+            }
+            return 'http://img.youtube.com/vi/' + video + '/0.jpg';
+        };
+
+        return {
+            thumb: getThumb
+        };
+    }());
+    var videoModal = $(".video-modal");
+
+    for(var i = 0; i<videoModal.length; i++){
+        $(".video-modal .article__article__image:eq(" + i + ")").css("background-image", "url(" + Youtube.thumb('http://www.youtube.com/watch?v='+ videoModal[i].getAttribute('data-video-id') +'', 'big') + ")")
+    }
+
+    videoModal.modalVideo({
+        autoplay: 1,
+        modestbranding: 1
+    });
+
+</script>
 </body>
 </html>

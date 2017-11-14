@@ -23,205 +23,87 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/article.css' %}">
 {% endblock %}
 {% block content %}
-    <article>
-        <header style="background-image: url('{{ article.image.url }}')">
-            <div class="container hidden-xs">
-					<span class="category" style="background-color: {{ article.category.colour }};">
-                        {{ article.category.name }}
-                    </span>
-                <h1>{{ article.title }}</h1>
-                <datetime>{{ article.date }}</datetime>
-            </div>
-        </header>
-    </article>
-    <div class="container card-1">
-        <article>
-            <div class="col-md-8">
-                <div class="content">
-                    <div class="visible-xs">
-							<span class="category" style="background-color: {{ article.category.colour }};">
-                                {{ article.category.name }}</span>
-                        <h1>{{ article.title }}</h1>
-                        <datetime>{{ article.date }}</datetime>
-                    </div>
-                    <img alt="{{ article.title }}" src="{{ article.image.url }}" class="hidden">
-                    {{ article.body|safe }}
-                </div>
-                <div class="this-article-author">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <img src="{{ article.author.avatar.url }}" height="75" class="img-circle">
-                            <div class="information" style="">
-                                <h4 class="name"><b>{{ article.author.family.get_full_name }}</b></h4>
-                                <p class="description">
-                                    {{ article.author.description }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="share">
-                    <div class="row">
-                        <h4 class="col-sm-6 col-xs-12">Бул макала менен бөлүшүңүз</h4>
-                        <div class="col-sm-6 col-xs-12 ssk-group"
-                             data-url="http://saresep.kg/article/{{ article.id }}/">
-                            <a href="" class="ssk ssk-facebook" data-image="image.jpg"></a>
-                            <a href="" class="ssk ssk-twitter"></a>
-                            <a href="" class="ssk ssk-google-plus"></a>
-                            <a href="" class="ssk ssk-vk"></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="comments">
-                    <div id="disqus_thread"></div>
-                    <script>
-                        var disqus_config = function () {
-                            this.page.url = 'http://saresep.kg/article/{{ article.id }}/';
-                            this.page.identifier = {{ article.id }};
-                        };
-                        (function () {
-                            var d = document, s = d.createElement('script');
-
-                            s.src = 'https://saresep.disqus.com/embed.js';
-
-                            s.setAttribute('data-timestamp', +new Date());
-                            (d.head || d.body).appendChild(s);
-                        })();
-                    </script>
-                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
-                                                                      rel="nofollow">comments powered by Disqus.</a>
-                    </noscript>
-                </div>
-                <div class="other-articles">
-                    <div class="widget">
-                        <h4 class="widget-title">БАШКА МАКАЛДАР</h4>
-                        <div class="articles">
-                            <ul class="_articles">
-                                <div class="row">
-                                    {% for i in by_category %}
-                                        <li class="col-md-6 col-sm-6 col-xs-12">
-                                            <a href="/article/{{ i.id }}/">
-                                                <article class="card">
-                                                    <div class="featured"
-                                                         style="background-image: url('{{ i.image.url }}')"></div>
-                                                    <div class="inner">
-                                                        <div class="info">
-                                                            <span class="author">{{ i.author.family.username }}</span>
-                                                            <br>
-                                                            <span class="type">{{ i.tag.name }}</span> &#8226;
-                                                            <time pubdate="">{{ i.date }}</time>
-                                                        </div>
-                                                        <h3>{{ i.title }}</h3>
-                                                    </div>
-                                                </article>
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <div class="col-md-4">
-            <div class="widget">
-                <h4 class="widget-title">БАШКА МАКАЛАЛАР</h4>
-                <div class="other-articles">
-                    <div class="articles">
-                        <ul class="_articles">
-                            <div class="row">
-                                {% for i in articles %}
-                                    <li class="col-xs-12">
-                                        <a href="/article/{{ i.id }}/">
-                                            <article class="card">
-                                                <div class="featured"
-                                                     style="background-image: url('{{ i.image.url }}')"></div>
-                                                <div class="inner">
-                                                    <div class="info">
-                                                        <span class="author">{{ i.author.family.get_full_name }}</span>
-                                                        <br>
-                                                        <span class="type">{{ i.tag.name }}</span> &#8226;
-                                                        <time pubdate="">{{ i.date }}</time>
-                                                    </div>
-                                                    <h3>{{ i.title }}</h3>
-                                                </div>
-                                            </article>
-                                        </a>
-                                    </li>
-                                {% endfor %}
-                            </div>
-                        </ul>
+    <div class="row">
+        <div class="article-cover" style="background-image: url('{{ article.image.url }}')">
+            <div class="article-cover__overlay">
+                <div class="article-cover__info">
+                    <span class="article-cover__category">{{ article.category.name }}</span>
+                    <h1>{{ article.title }}</h1>
+                    <div class="article-cover__meta">
+                        <span class="article-cover__date">{{ article.date }}</span>
+                        <span class="article-cover__views"><span class="icon-eye"></span> {{ article.rating }}</span>
                     </div>
                 </div>
             </div>
         </div>
+        <article class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
+            {{ article.body|safe }}
+            <div class="ssk-sticky ssk-left ssk-center ssk-lg" data-url="http://saresep.kg/article/{{ article.id }}/">
+                <a href="" class="ssk ssk-facebook"></a>
+                <a href="" class="ssk ssk-twitter"></a>
+                <a href="" class="ssk ssk-google-plus"></a>
+                <a href="" class="ssk ssk-vk"></a>
+            </div>
+            <div class="this-article-author">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img src="{{ article.author.avatar.url }}" height="75" class="img-circle">
+                        <div class="information" style="">
+                            <h4 class="name"><b>{{ article.author.family.get_full_name }}</b></h4>
+                            <p class="description">
+                                {{ article.author.description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ssk-sticky ssk-left ssk-center ssk-lg" data-url="http://saresep.kg/article/{{ article.id }}/">
+                <a href="" class="ssk ssk-facebook"></a>
+                <a href="" class="ssk ssk-twitter"></a>
+                <a href="" class="ssk ssk-google-plus"></a>
+                <a href="" class="ssk ssk-vk"></a>
+            </div>
+            <div class="comments">
+                <div id="disqus_thread"></div>
+                <script>
+                    var disqus_config = function () {
+                        this.page.url = 'http://saresep.kg/article/{{ article.id }}/';
+                        this.page.identifier = {{ article.id }};
+                    };
+                    (function () {
+                        var d = document, s = d.createElement('script');
+
+                        s.src = 'https://saresep.disqus.com/embed.js';
+
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            </div>
+        </article>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+            <div class="content">
+                <div class="category">
+                    <h4 class="category_title">БАШКА МАКАЛДАР</h4>
+                    <ul class="articles">
+                        {% for i in articles %}
+                            <li class="articles__article">
+                                <a href="/article/{{ i.id }}" class="articles__article__link">
+                                    {% if i.image %}
+                                        <div class="article__article__image"
+                                             style="background-image: url('{{ i.image.url }}')"></div>
+                                    {% endif %}
+                                    <div class="article__article__info">
+                                        <div class="article__article__heading">​{{ i.title }}</div>
+                                        <span class="article__article__views"><span
+                                                class="icon-eye"></span> {{ i.rating }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-
-{% endblock %}
-{% block script %}
-    <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/zema-nav.js' %}"></script>
-    <script src="{% static 'js/social-share-kit.min.js' %}"></script>
-    <script>
-        SocialShareKit.init();
-        var dollar = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-        var euro = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22EURKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-        var rub = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22RUBKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-        var tenge = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22KZTKGS%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-
-        $.getJSON(dollar, function (s) {
-            $('#dollarrate').append(s.query.results.rate.Rate)
-            $('#dollarrate2').append(s.query.results.rate.Rate)
-        })
-        $.getJSON(euro, function (s) {
-            $('#eurorate').append(s.query.results.rate.Rate)
-            $('#eurorate2').append(s.query.results.rate.Rate)
-
-
-        })
-        $.getJSON(rub, function (s) {
-            $('#rubrate').append(s.query.results.rate.Rate)
-            $('#rubrate2').append(s.query.results.rate.Rate)
-        })
-        $.getJSON(tenge, function (s) {
-            $('#tengerate').append(s.query.results.rate.Rate)
-            $('#tengerate2').append(s.query.results.rate.Rate)
-        })
-    </script>
-    <script>
-        function startTime() {
-            var monthNames = [
-                "үчтүн айы", "бирдин айы", "жалган куран айы",
-                "чын куран айы", "бугу айы", "кулжа айы", "теке айы",
-                "баш оона айы,", "аяк оона айы", "тогуздун айы",
-                "жетинин айы", "бештин айы"
-            ];
-            var dayNames = [
-                "Дуйшенбү", "Шейшемби", "Шаршемби",
-                "Бейшемби", "Жума", "Ишемби", "Жекшемби"
-            ];
-            var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var s = today.getSeconds();
-            var day = today.getDate();
-            var weekday = today.getDay();
-            var monthIndex = today.getMonth();
-            var year = today.getFullYear();
-            m = checkTime(m);
-            s = checkTime(s);
-            document.getElementById('txt').innerHTML = dayNames[weekday] + ', ' + day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + h + ":" + m + ":" + s
-            var t = setTimeout(startTime, 500);
-        }
-        function checkTime(i) {
-            if (i < 10) {
-                i = "0" + i
-            }
-            ;  // add zero in front of numbers < 10
-            return i;
-        }
-        startTime();
-    </script>
 {% endblock %}

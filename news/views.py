@@ -6,47 +6,29 @@ from .models import Category
 from django.core.paginator import Paginator
 from operator import attrgetter
 from article.models import Article
+from videos.models import Video
 from itertools import chain
 
 
 # Create your views here.
 
 def main(request):
+    threshold = datetime.now() - timedelta(days=14)
     args = {
         "categories_nav": Category.objects.order_by('slug', 'name')[0:7],
-        "categories2": Category.objects.all()[0:8],
-        "categories1": Category.objects.all()[8:16]
+        "categories": Category.objects.order_by('slug', 'name'),
+        "latest": Article.objects.filter(published=True)[0:13],
+        "popular": Article.objects.filter(published=True, date__gte=threshold).order_by('-rating')[0:5],
+        "russian": Article.objects.filter(category__name="Материалы на русском")[0:7],
+        "opinions": Article.objects.filter(category__name="Жорум")[0:7],
+        "videos": Video.objects.all()[0:5],
     }
-    try:
-        args['a1'] = Article.objects.filter(cart='1', published=True).first()
-    except:
-        pass
-    try:
-        args['a2'] = Article.objects.filter(cart='2', published=True).first()
-    except:
-        pass
-    try:
-        args['a3'] = Article.objects.filter(cart='3', published=True).first()
-    except:
-        pass
-    try:
-        args['a4'] = Article.objects.filter(cart='4', published=True).first()
-    except:
-        pass
-    try:
-        args['a5'] = Article.objects.filter(cart='5', published=True).first()
-    except:
-        pass
-    threshold = datetime.now() - timedelta(days=14)
     args['last'] = Article.objects.filter(published=True, date__gte=threshold).order_by('-date', '-view')[0:4]
     args['categories'] = Category.objects.all()
     return render(request, 'main.html', args)
 
-
-# def teaser(request):
-#     return render(request, 'teaser.html')
-
 def category(request, category_id, page_number):
+    threshold = datetime.now() - timedelta(days=14)
     category_name = Category.objects.get(id=category_id)
     args = {}
     page_number = int(page_number)
@@ -66,4 +48,5 @@ def category(request, category_id, page_number):
     args['category_name'] = category_name
     args["categories2"] = Category.objects.all()[0:8]
     args["categories1"] = Category.objects.all()[8:16]
+    args["popular"] = Article.objects.filter(published=True, date__gte=threshold).order_by('-rating')[0:5]
     return render_to_response('category.html', args)

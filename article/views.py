@@ -23,9 +23,9 @@ def article(request, article_id):
         'article': x,
         'by_category': Article.objects.filter(category_id=x.category_id,
                                               published=True,
-                                              date__gte=threshold).order_by('-view').exclude(id=x.id)[0:4],
+                                              date__gte=threshold).order_by('-view').exclude(id=x.id)[0:8],
         'articles': Article.objects.filter(published=True,
-                                           date__gte=threshold).exclude(id=x.id)[0:4],
+                                           date__gte=threshold).exclude(id=x.id)[0:8],
         'active': x.category.name,
     }
     return render(request, 'article.html', args)

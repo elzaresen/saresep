@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'author',
     'PIL',
     'redactor',
+    'videos'
 )
 
 MIDDLEWARE_CLASSES = (
