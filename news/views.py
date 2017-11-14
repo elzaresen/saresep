@@ -16,7 +16,7 @@ def main(request):
     threshold = datetime.now() - timedelta(days=14)
     args = {
         "categories_nav": Category.objects.order_by('slug', 'name')[0:7],
-        "categories": Category.objects.order_by('slug', 'name'),
+        "categories": Category.objects.order_by('slug', 'name')[0:-2],
         "latest": Article.objects.filter(published=True)[0:13],
         "popular": Article.objects.filter(published=True, date__gte=threshold).order_by('-rating')[0:5],
         "russian": Article.objects.filter(category__name="Материалы на русском")[0:7],
