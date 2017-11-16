@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^addcomment_article/(?P<article_id>\d+)/$', 'article.views.addcomment'),
     url(r'^category/(\d+)/(\d+)/$', 'news.views.category'),
     url(r'^redactor/', include('redactor.urls')),
-    url(r'^$', 'news.views.main', name="index"),
+    url(r'^$', 'news.views.test', name="index"),
     url(r'^static/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATIC_ROOT}),
     url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT}),
 ]
