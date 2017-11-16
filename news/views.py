@@ -11,7 +11,6 @@ from itertools import chain
 
 
 # Create your views here.
-
 def main(request):
     threshold = datetime.now() - timedelta(days=14)
     args = {
@@ -26,6 +25,9 @@ def main(request):
     args['last'] = Article.objects.filter(published=True, date__gte=threshold).order_by('-date', '-view')[0:4]
     args['categories'] = Category.objects.all()
     return render(request, 'main.html', args)
+
+def test(request):
+    return render(request, 'test.html')
 
 def category(request, category_id, page_number):
     threshold = datetime.now() - timedelta(days=14)
