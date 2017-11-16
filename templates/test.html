@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block title %}Саресеп - Сайт в ремонте{% endblock %}
+{% block image_twitter %}{% static 'css/sample.png' %}{% endblock %}
+{% block category_string %} &mdash; {{ category_name }}{% endblock %}
+{% block category_string2 %} &mdash; {{ category_name }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+                <img src="{% static 'assets/img/logo.svg' %}" height="200" alt="">
+                <h1>Сайт находится в ремонте на 1 день</h1>
+        </div>
+    </div>
+{% endblock %}
