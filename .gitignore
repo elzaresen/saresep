@@ -60,5 +60,3 @@ target/
 
 # Created by .ignore support plugin (hsz.mobi)
 .idea
-
-db.sqlite3
