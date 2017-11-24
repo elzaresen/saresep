@@ -23,7 +23,7 @@ def main(request):
         "videos": Video.objects.all()[0:5],
     }
     args['last'] = Article.objects.filter(published=True, date__gte=threshold).order_by('-date', '-view')[0:4]
-    args['categories'] = Category.objects.all()
+
     return render(request, 'main.html', args)
 
 def test(request):
