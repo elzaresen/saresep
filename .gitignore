@@ -62,4 +62,4 @@ target/
 .idea
 
 .sqlite3
-static_in_env
+static_in_env/
