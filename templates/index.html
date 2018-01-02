@@ -7,7 +7,24 @@
     <meta name="audience" content="all"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="author" content="{% block author %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <meta property="og:title" content="{% block title_og %}{% endblock %}"/>
+    <meta property="og:description" content="{% block description_og %}{% endblock %}"/>
+    <meta property="og:image" content="http://{{ request.get_host }}{% block image_og %}{% endblock %}"/>
+    <meta property="og:url" content="http://{{ request.get_host }}{% block url_og %}{% endblock %}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="???????"/>
+    <meta property="fb:app_id" content="231507357184200"/>
+    <meta name="twitter:title" content="{% block title_twitter %}{% endblock %}">
+    <meta name="twitter:description" content="{% block description_twitter %}{% endblock %}">
+    <meta name="twitter:image" content="http://{{ request.get_host }}{% block image_twitter %}{% endblock %}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@saresep">
+    <meta name="twitter:creator" content="{% block author_twitter %}{% endblock %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
     {% load staticfiles %}
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|Merriweather:400,400i,700,700i&amp;subset=cyrillic-ext"
           rel="stylesheet">
@@ -22,7 +39,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/typography.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/carousel.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/index.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/article.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/article.css' %}">    
 </head>
 <body>
 
@@ -68,11 +85,7 @@
 <footer class="container">
     <div class="row up">
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 text-center text-md-left">
-            <p>
-                Байтик Баатыр &mdash; Горький к. <br>
-                Вефа Центр, Б &mdash; блок <br>
-                5 &mdash; кабат, 102 <br>
-            </p>
+<p><a href="https://www.patreon.com/saresep"><img src="{% static 'assets/img/become_a_patron_button.png' %}"></a></p>
             <p>
                 info@saresep.kg
             </p>
@@ -92,6 +105,37 @@
         </div>
     </div>
 </footer>
+<!-- WWW.NET.KG , code for http://saresep.kg -->
+<script language="javascript" type="text/javascript">
+ java="1.0";
+ java1=""+"refer="+escape(document.referrer)+"&amp;page="+escape(window.location.href);
+ document.cookie="astratop=1; path=/";
+ java1+="&amp;c="+(document.cookie?"yes":"now");
+</script>
+<script language="javascript1.1" type="text/javascript">
+ java="1.1";
+ java1+="&amp;java="+(navigator.javaEnabled()?"yes":"now");
+</script>
+<script language="javascript1.2" type="text/javascript">
+ java="1.2";
+ java1+="&amp;razresh="+screen.width+'x'+screen.height+"&amp;cvet="+
+ (((navigator.appName.substring(0,3)=="Mic"))?
+ screen.colorDepth:screen.pixelDepth);
+</script>
+<script language="javascript1.3" type="text/javascript">java="1.3"</script>
+<script language="javascript" type="text/javascript">
+ java1+="&amp;jscript="+java+"&amp;rand="+Math.random();
+ document.write("<a href='http://www.net.kg/stat.php?id=5942&amp;fromsite=5942' target='_blank'>"+
+ "<img src='http://www.net.kg/img.php?id=5942&amp;"+java1+
+ "' border='0' alt='WWW.NET.KG' width='88' height='31' /></a>");
+</script>
+<noscript>
+ <a href='http://www.net.kg/stat.php?id=5942&amp;fromsite=5942' target='_blank'><img
+  src="http://www.net.kg/img.php?id=5942" border='0' alt='WWW.NET.KG' width='88'
+  height='31' /></a>
+</noscript>
+<!-- /WWW.NET.KG -->
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

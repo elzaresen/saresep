@@ -6,11 +6,11 @@
 {% block author %}{{ article.author.family.get_full_name }}{% endblock %}
 {% block title_og %}{{ article.title }}{% endblock %}
 {% block description_og %}{{ article.body|striptags|slice:":160" }}{% endblock %}
-{% block image_og %}{{ article.image.url }}{% endblock %}
+{% block image_og %}{% if article.image.url != None %}{{ article.image.url }}{% else %}{% static 'assets/img/archive.jpg' %}{% endif %}{% endblock %}
 {% block url_og %}/article/{{ article.id }}{% endblock %}
 {% block title_twitter %}{{ article.title }}{% endblock %}
 {% block description_twitter %}{{ article.body|striptags|slice:":160" }}{% endblock %}
-{% block image_twitter %}{{ article.image.url }}{% endblock %}
+{% block image_twitter %}{% if article.image.url != None %}{{ article.image.url }}{% else %}{% static 'assets/img/archive.jpg' %}{% endif %}{% endblock %}
 {% block author_twitter %}{{ article.author.family.get_full_name }}{% endblock %}
 {% block static %}
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700i|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext"
@@ -24,7 +24,13 @@
 {% endblock %}
 {% block content %}
     <div class="row">
-        <div class="article-cover" style="background-image: url('{{ article.image.url }}')">
+	{% if article.image.url != None %}
+        <div class="article-cover"
+             style="background-image: url('{{ article.image.url }}')">
+	{% else %}
+	<div class="article-cover"
+        	style="background-image: url('{% static 'assets/img/archive.jpg' %}')">
+	{% endif %}
             <div class="article-cover__overlay">
                 <div class="article-cover__info">
                     <span class="article-cover__category">{{ article.category.name }}</span>
@@ -84,15 +90,18 @@
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
             <div class="content">
                 <div class="category">
-                    <h4 class="category_title">БАШКА МАКАЛДАР</h4>
+                    <h4 class="category_title">БАШКА МАКАЛАЛАР</h4>
                     <ul class="articles">
                         {% for i in articles %}
                             <li class="articles__article">
                                 <a href="/article/{{ i.id }}" class="articles__article__link">
-                                    {% if i.image %}
-                                        <div class="article__article__image"
-                                             style="background-image: url('{{ i.image.url }}')"></div>
-                                    {% endif %}
+	{% if i.image.url != None %}
+        	<div class="article__article__image"
+             style="background-image: url('{{ i.image.url }}')"></div>
+	{% else %}
+		<div class="article__article__image"
+        	style="background-image: url('{% static 'assets/img/archive.jpg' %}')"></div>
+	{% endif %}
                                     <div class="article__article__info">
                                         <div class="article__article__heading">​{{ i.title }}</div>
                                         <span class="article__article__views"><span
