@@ -61,5 +61,5 @@ target/
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 
-.sqlite3
+db.sqlite3
 static_in_env
