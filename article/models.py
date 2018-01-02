@@ -126,3 +126,31 @@ class ArticleComment(models.Model):
             return 'Кечээ - %s' % date(self.time + timedelta(hours=6), 'H:i:s')
         else:
             return date(self.time + timedelta(hours=6), 'Y/m/d - H:i:s')
+
+
+class Ads(models.Model):
+    class Meta:
+        db_table = 'ads'
+        verbose_name = u"Реклама"
+        verbose_name_plural = u"Реклама"
+
+    ADPOSITION = (
+        ('1', 'Главная 1'),
+        ('2', 'Главная 2'),
+        ('3', 'Главная 3'),
+        ('4', 'Главная 4'),
+        ('5', 'Главная 5'),
+        ('6', 'Главная 6'),
+        ('7', 'Главная 7'),
+        ('8', 'Главная 8'),
+        ('9', 'Главная 9'),
+        ('10', 'Главная 10'),
+    )
+
+    title = models.CharField(max_length=1000, verbose_name='Название')
+    link = models.URLField(verbose_name="Ссылка")
+    image = models.FileField(upload_to=image_upload_to, null=True, blank=False, verbose_name='Изображение')
+    type = models.CharField(max_length=100, choices=ADPOSITION, null=True, verbose_name="Позиция")
+
+    def __unicode__(self):
+        return self.title

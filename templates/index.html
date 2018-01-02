@@ -164,13 +164,11 @@
 
     $('.ads-carousel').flickity({
         // options
-        lazyLoad: 2,
-        initialIndex: 2,
         autoPlay: true,
         infiniteScroll: true,
         wrapAround: true,
-        pageDots: false
-
+        pageDots: false,
+        cellAlign: 'left',
     });
 
     var $carousel = $('.carousel').flickity({

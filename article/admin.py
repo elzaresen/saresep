@@ -34,5 +34,11 @@ class ArticleAdmin(admin.ModelAdmin):
 
     img.allow_tags = True
 
-
 admin.site.register(Article, ArticleAdmin)
+
+
+class AdsAdmin(admin.ModelAdmin):
+    fields = 'title link image type'.split()
+    list_display = '__unicode__ title link image type'.split()
+
+admin.site.register(Ads, AdsAdmin)

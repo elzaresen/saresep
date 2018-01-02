@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from .models import Category
 from django.core.paginator import Paginator
 from operator import attrgetter
-from article.models import Article
+from article.models import Article, Ads
 from videos.models import Video
 from itertools import chain
 
@@ -21,6 +21,7 @@ def main(request):
         "russian": Article.objects.filter(category__name="Материалы на русском")[0:7],
         "opinions": Article.objects.filter(category__name="Жорум")[0:7],
         "videos": Video.objects.all()[0:5],
+        "ads": Ads.objects.all(),
     }
     args['last'] = Article.objects.filter(published=True, date__gte=threshold).order_by('-date', '-view')[0:4]
 
